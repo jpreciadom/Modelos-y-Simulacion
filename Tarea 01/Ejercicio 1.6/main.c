@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "queue.h"
 
 #define NUMMAQUINAS 3                           //Van a haber 3 maqinas
 #define TIEMPODEUSO 3600                        //Cada maquina se usa 3600 segundos
@@ -19,7 +20,7 @@ struct Maquina {
 long Reloj;
 int MaquinaEnUso;
 struct Maquina *Maquinas;
-//Cola con las piezas
+struct Queue * Piezas;
 
 //Contadores estadisticos
 int PiezasProcesadas;
@@ -44,6 +45,7 @@ void Inicializcion(){
     (Maquinas+2)->RangosDeDemora[0] = 10;
     (Maquinas+2)->RangosDeDemora[1] = 20;
     //La cola con las piezas
+    Piezas = initQueue();
 
     //Contadores estadisticos
     PiezasProcesadas = 0;
