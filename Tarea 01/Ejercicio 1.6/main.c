@@ -3,8 +3,8 @@
 #include "queue.h"
 #include "lcgrand.h"
 
-#define NUMMAQUINAS 2                           //Van a haber 3 maqinas
-#define TIEMPODEUSO 360                        //Cada maquina se usa 3600 segundos
+#define NUMMAQUINAS 3                           //Van a haber 3 maqinas
+#define TIEMPODEUSO 3600                        //Cada maquina se usa 3600 segundos
 #define NUMEVENTOS 3
 
 struct Pieza {
@@ -31,8 +31,8 @@ void CambioDeMaquina();
 //Estado del sistema
 long Reloj;
 int MaquinaEnUso;
-struct Maquina *Maquinas;
-struct Queue * Piezas;
+struct Maquina Maquinas[NUMMAQUINAS];
+struct Queue *Piezas;
 long Eventos[NUMEVENTOS];                       //En el evento 0 llega una pieza nueva a la cola y en el evento 1 termina de ser procesada una pieza
                                                 //el evento 3 es el cambio de máquina
 //Contadores estadisticos
@@ -43,9 +43,6 @@ int MaxCantPiezasQueEsperaron;
 void Inicializacion(){
     Reloj = 0;
     MaquinaEnUso = 0;
-    do{
-        Maquinas = (struct Maquina*)malloc(sizeof(struct Maquina) * NUMMAQUINAS);
-    }while(Maquinas == NULL);
     for(int i = 0; i<NUMMAQUINAS; i++){
         (Maquinas+i)->Id = i + 1;
         (Maquinas+i)->EstadoDeActividad = 0;
@@ -61,6 +58,7 @@ void Inicializacion(){
     (Maquinas+2)->RangosDeDemora[1] = 20;
     //La cola con las piezas
     Piezas = initQueue();
+
     //Inicializacion de eventos
     Eventos[0] = Reloj + (long)uniform(10, 20);             //Se programa la primera llegada de una pieza
     Eventos[1] = -1;                                        //No se programa ninguna pieza terminada
@@ -98,6 +96,15 @@ int main() {
         printf("\n");
         Timing();
     }
+    printf("\n\nFin de la simulacion\n\n");
+
+    double promedio = (double)(TotalTiempoEsperado / PiezasProcesadas);
+    printf("El promedio esperado por las piezas fue %f\n", promedio);
+    for(int i = 0; i<NUMMAQUINAS; i++){
+        printf("La maquina %i se uso %li segundos de %i segundos\n", i, Maquinas[i].TiempoDeUso, TIEMPODEUSO);
+    }
+    printf("%i piezas quedaron sin procesar, mientras que %i piezas fueron procesadas\n", Piezas->Size, PiezasProcesadas);
+    printf("El numero maximo de piezas en la cinta fue %i\n", MaxCantPiezasQueEsperaron);
     return 0;
 }
 
@@ -111,20 +118,21 @@ void MeterPiezaALaMaquina(){
     long TiempoDisponible = Eventos[2]-Reloj;
     if(Piezas->Size > 0 && maq->EstadoDeActividad == 0 && TiempoDisponible >= maq->RangosDeDemora[1]){
         TotalTiempoEsperado += Reloj - Peek(Piezas)->TiempoDeLlegada;
+        printf("Se mete una pieza en la maquina que espero %li segundos\n", Reloj - Peek(Piezas)->TiempoDeLlegada);
         FreeNode(Dequeue(Piezas));
         maq->EstadoDeActividad = 1;
         struct Pieza *p;
         do{
             p = (struct Pieza*)malloc(sizeof(struct Pieza));
         }while(p == NULL);
-        printf("Banderita discreta1\n");
         maq->TrabajandoEn = p;
         p->TiempoDeEntradaALaMaquina = Reloj;
         p->TiempoDeProcesamiento = uniform(maq->RangosDeDemora[0], maq->RangosDeDemora[1]);
         Eventos[1] = Reloj + p->TiempoDeProcesamiento;
-        printf("Se mete una pieza en a maquina que espero %li segundos\n", Reloj - Peek(Piezas)->TiempoDeLlegada);
         printf("Sale en %li segundos\n", p->TiempoDeProcesamiento);
-    }
+     } else if((Piezas->Size == 0 && maq->EstadoDeActividad == 0) || TiempoDisponible < maq->RangosDeDemora[1]){
+        Eventos[1] = -1;
+     }
 }
 
 void CambioDeMaquina(){
@@ -136,7 +144,7 @@ void CambioDeMaquina(){
 }
 
 void PiezaProcesada(){
-    printf("Se termino de procesar una pieza\n");
+    printf("Se termino de procesar una pieza en la maquina %i\n", MaquinaEnUso);
     PiezasProcesadas++;
     struct Maquina *maq = (Maquinas + MaquinaEnUso);
     maq->TiempoDeUso += maq->TrabajandoEn->TiempoDeProcesamiento;

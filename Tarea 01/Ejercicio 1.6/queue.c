@@ -3,7 +3,7 @@
 #include "queue.h"
 
 struct ChainNode * initNode(long tiempoDeLlegada){
-    struct ChainNode* node;
+    struct ChainNode* node = NULL;
     do{
         node = (struct ChainNode *)malloc(sizeof(struct ChainNode));
     } while(node == NULL);
@@ -13,13 +13,13 @@ struct ChainNode * initNode(long tiempoDeLlegada){
 }
 
 struct Queue * initQueue(){
-    struct Queue* queue;
+    struct Queue* q = NULL;
     do{
-        queue = malloc(sizeof(struct Queue));
-    } while(queue == NULL);
-    queue->Front = queue->Tail = NULL;
-    queue->Size = 0;
-    return queue;
+        q = (struct Queue *)malloc(sizeof(struct Queue));
+    } while(q == NULL);
+    q->Front = q->Tail = NULL;
+    q->Size = 0;
+    return q;
 }
 
 void Enqueue(struct Queue *Queue, struct ChainNode *node){

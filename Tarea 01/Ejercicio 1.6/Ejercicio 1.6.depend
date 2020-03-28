@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1585429000 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 01\ejercicio 1.6\main.c
+1585438758 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 01\ejercicio 1.6\main.c
 	<stdio.h>
 	<stdlib.h>
 	"queue.h"
 	"lcgrand.h"
 
-1585429208 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 01\ejercicio 1.6\queue.c
+1585430563 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 01\ejercicio 1.6\queue.c
 	<stdio.h>
 	<stdlib.h>
 	"queue.h"
