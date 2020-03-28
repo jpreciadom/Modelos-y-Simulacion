@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NUMMAQUINAS 3;
+#define NUMMAQUINAS 3
 
 struct Maquina;
 struct Pieza;
@@ -23,6 +23,6 @@ struct Pieza {
 };
 
 int main() {
-
+    printf("hello world");
     return 0;
 }
