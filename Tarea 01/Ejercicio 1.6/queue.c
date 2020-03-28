@@ -15,7 +15,7 @@ struct ChainNode * initNode(long tiempoDeLlegada){
 struct Queue * initQueue(){
     struct Queue* queue;
     do{
-        queue = (struct Queue *)malloc(sizeof(struct Queue));
+        queue = malloc(sizeof(struct Queue));
     } while(queue == NULL);
     queue->Front = queue->Tail = NULL;
     queue->Size = 0;
