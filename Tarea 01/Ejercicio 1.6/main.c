@@ -17,8 +17,8 @@ struct Maquina {
 
 struct Pieza {
     int Id;                                     //Identificador unico de la pieza
-    int TiempoDeLlegada[NUMMAQUINAS];                     //Momento en el que la pieza llego a la maquina
-    long Tiempoesperado[NUMMAQUINAS];
+    int TiempoDeLlegada[NUMMAQUINAS];           //Momento en el que la pieza llego a la maquina
+    long Tiempoesperado[NUMMAQUINAS];           //Tiempo que espero en la i-esima maquina
     struct Maquina *AtendidoPor;                //Indica la máquina que la esta atendiendo
 };
 
