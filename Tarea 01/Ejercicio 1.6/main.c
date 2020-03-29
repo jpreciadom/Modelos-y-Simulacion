@@ -80,6 +80,7 @@ void Timing(){
 }
 
 int main() {
+    srand(time(0));
     long tiempoSimulacion = NUMMAQUINAS * TIEMPODEUSO;
     printf("Inicializando.... ");
     Inicializacion();
@@ -108,9 +109,23 @@ int main() {
     return 0;
 }
 
+int i,dat;
+double num, mini, maxi;
+
 double uniform(double a, double b) {                   /* Uniform variate generation function. */
     /* Return a U(a,b) random variate. */
-    return a + lcgrand(1) * (b - a);
+    /*return a + lcgrand(1) * (b - a);*/
+    dat = rand() % 11;
+    for (i=1; i<dat; i++)
+    {
+        /*(rand()/RAND_MAX) nos devuelve un numero
+        aleatorio con distribucion uniforme entre 0 y 1.
+        Se hace un cast para pasar el numero que esta en
+        formato entero a formato coma flotante, para que
+        la division no sea entre eneteros*/
+        num=(double)rand()/RAND_MAX*(b-a)+a;
+    }
+    return num;
 }
 
 void MeterPiezaALaMaquina(){
