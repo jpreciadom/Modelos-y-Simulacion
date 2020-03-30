@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1585524233 source:c:\users\juan pablo\desktop\modelos-y-simulacion\tarea 01\ejercicio 1.7\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"lcgrand.h"
+
+903918794 source:c:\users\juan pablo\desktop\modelos-y-simulacion\tarea 01\ejercicio 1.7\lcgrand.c
+
+903918616 c:\users\juan pablo\desktop\modelos-y-simulacion\tarea 01\ejercicio 1.7\lcgrand.h
+	"lcgrand.h"
+

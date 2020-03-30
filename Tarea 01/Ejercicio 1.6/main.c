@@ -118,11 +118,6 @@ double uniform(double a, double b) {                   /* Uniform variate genera
     dat = rand() % 11;
     for (i=1; i<dat; i++)
     {
-        /*(rand()/RAND_MAX) nos devuelve un numero
-        aleatorio con distribucion uniforme entre 0 y 1.
-        Se hace un cast para pasar el numero que esta en
-        formato entero a formato coma flotante, para que
-        la division no sea entre eneteros*/
         num=(double)rand()/RAND_MAX*(b-a)+a;
     }
     return num;
