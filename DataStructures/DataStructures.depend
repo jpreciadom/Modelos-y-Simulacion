@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1585583257 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\datastructures\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ChainNode.h"
+
+1585581986 c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\datastructures\chainnode.h
+
+1585581954 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\datastructures\chainnode.c
+	<stdlib.h>
+	"ChainNode.h"
+
