@@ -5,15 +5,14 @@
 
 #define UNIF 10
 
-int next_event_type,num_min,num_N,num_in_q_A,num_in_q_B,total_pasajeros,bus_station,numeventos;
+int bus_status,next_event_type,num_min,num_N,num_in_q_A,num_in_q_B,total_pasajeros,bus_station,numeventos;
 
 float reloj,mean_arrival_A,time_next_event[6], promedio_esperado, suma_tiempo_esperado, num_p_esperando_A[51], num_p_esperando_B[51];
 
 float mean_intertravel  = 31.0;
 float desviation= 5.0;
 
-int bus_status=0;
-int mean_arrival_B=12;
+float mean_arrival_B=12;
 
 void initialize(void);
 void timing(void);
@@ -28,7 +27,7 @@ float normal(void);
 int main(){
     srand(time(0));
     numeventos=5;
-for(int i=1; i<=5; i++){
+for(int i=1; i<=10; i++){
     num_N=i;
     initialize();
     do{
@@ -62,6 +61,7 @@ num_in_q_B=0;
 bus_station=1;
 mean_arrival_A=6.7;
 num_min=480;
+bus_status=0;
 
 suma_tiempo_esperado=0.0;
 promedio_esperado=0.0;
@@ -89,24 +89,24 @@ void timing(){
 }
 
 void passenger_arrival_A(){
-    printf("llega pasajero en a %f \n", reloj);
+    //printf("llega pasajero en a %f \n", reloj);
     num_in_q_A++;
     num_p_esperando_A[num_in_q_A] = reloj;
-    printf("cola %i status %i station %i \n",num_in_q_A,bus_status,bus_station);
+    //printf("cola %i status %i station %i \n",num_in_q_A,bus_status,bus_station);
     if(num_in_q_A>=num_N && bus_status==0 && bus_station==1){
-        printf("se lleno \n");
+        //printf("se lleno \n");
         bus_travel();
     }
-    time_next_event[1]=reloj+poisson(mean_arrival_A);
+    time_next_event[1]=reloj+15.0;//poisson(mean_arrival_A);
 }
 
 void passenger_arrival_B(){
-    printf("llega pasajero en b %f \n",reloj);
+    //printf("llega pasajero en b %f \n",reloj);
     num_in_q_B++;
-    printf("pasajeros en b %i \n",num_in_q_B);
+    //printf("pasajeros en b %i \n",num_in_q_B);
     num_p_esperando_B[num_in_q_B] = reloj;
     if(num_in_q_B>=num_N && bus_status==0 && bus_station==2){
-        printf("se lleno \n");
+        //printf("se lleno \n");
         bus_travel();
     }
     time_next_event[2]=reloj+poisson(mean_arrival_B);
@@ -115,7 +115,7 @@ void passenger_arrival_B(){
 void bus_travel(){
     bus_status=1;
     if(bus_station==1){
-       printf("sale bus en %f con pasajeros %i \n",reloj,num_in_q_A);
+       //printf("sale bus en %f con pasajeros %i \n",reloj,num_in_q_A);
         total_pasajeros+=num_in_q_A;
         for(int i=1; i<=num_in_q_A; i++){
             suma_tiempo_esperado=suma_tiempo_esperado+(reloj-num_p_esperando_A[i]);
@@ -123,7 +123,7 @@ void bus_travel(){
         }
         num_in_q_A=0;
     }else{
-        printf("sale bus %f con pasajeros %i \n",reloj,num_in_q_B);
+        //printf("sale bus %f con pasajeros %i \n",reloj,num_in_q_B);
         total_pasajeros+=num_in_q_B;
         for(int i=1; i<=num_in_q_B; i++){
             suma_tiempo_esperado=suma_tiempo_esperado+(reloj-num_p_esperando_B[i]);
@@ -133,11 +133,11 @@ void bus_travel(){
         num_in_q_B=0;
     }
     time_next_event[4]=reloj+normal();
-    printf("time next %f \n",time_next_event[4]);
+    //printf("time next %f \n",time_next_event[4]);
 }
 
 void bus_arrive(){
-    printf("llego bus en %f \n",reloj);
+    //printf("llego bus en %f \n",reloj);
     bus_status=0;
     time_next_event[4]=1.0e+30;
     if(bus_station==1){
@@ -162,8 +162,8 @@ void report(){
 
 float poisson(float mean)  /* Exponential variate generation function. */
 {
-    int f = rand() % 20;
-    return -mean * log((lcgrand(f)));
+    //int f = rand() % 20;
+    return -mean * log((lcgrand(1)));
 }
 
 float normal(){
