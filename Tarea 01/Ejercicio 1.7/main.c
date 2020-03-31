@@ -97,7 +97,7 @@ void passenger_arrival_A(){
         //printf("se lleno \n");
         bus_travel();
     }
-    time_next_event[1]=reloj+15.0;//poisson(mean_arrival_A);
+    time_next_event[1]=reloj+poisson(mean_arrival_A);
 }
 
 void passenger_arrival_B(){
@@ -162,8 +162,8 @@ void report(){
 
 float poisson(float mean)  /* Exponential variate generation function. */
 {
-    //int f = rand() % 20;
-    return -mean * log((lcgrand(1)));
+    int f = rand() % 20;
+    return -mean * log((lcgrand(f)));
 }
 
 float normal(){
