@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "ChainNode.h"
 
-struct ChainNode *initSimpleChainNode(void *Element){
+struct ChainNode *initChainNode(void *Element){
     struct ChainNode *newNode = malloc(sizeof(struct ChainNode));
     if(newNode == NULL)
         return NULL;

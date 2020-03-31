@@ -6,7 +6,7 @@ struct ChainNode {
     struct ChainNode *Next;
 };
 
-struct ChainNode *initSimpleChainNode(void *Element);
+struct ChainNode *initChainNode(void *Element);
 void FreeChainNode(struct ChainNode *toFree);
 
 #endif // CHAINNODEH

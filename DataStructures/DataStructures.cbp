@@ -35,6 +35,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="ChainNode.h" />
+		<Unit filename="LinkedList.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="LinkedList.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
