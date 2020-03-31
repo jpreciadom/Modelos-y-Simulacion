@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1585687525 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 01\restaurante\chainnode.c
+	<stdlib.h>
+	"ChainNode.h"
+
+1585687525 c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 01\restaurante\chainnode.h
+
+1585687889 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 01\restaurante\linkedlist.c
+	"LinkedList.h"
+	<stdlib.h>
+
+1585687549 c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 01\restaurante\linkedlist.h
+	"ChainNode.h"
+
+1585687912 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 01\restaurante\main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+

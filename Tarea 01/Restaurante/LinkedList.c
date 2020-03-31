@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 struct LinkedList * initLinkedList(){
-    struct LinkedList *list = malloc(sizeof(struct LinkedList));
+    struct LinkedList *list = (struct LinkedList *)malloc(sizeof(struct LinkedList));
     if(list == NULL)
         return NULL;
 
@@ -14,7 +14,7 @@ struct LinkedList * initLinkedList(){
 void FreeNodes(struct ChainNode *node){
     if(node != NULL){
         FreeNodes(node->Next);
-        FreeChainNode(node);
+        FreeChainNode(node, 1);
     }
 }
 
@@ -95,11 +95,12 @@ void * GetLast(struct LinkedList *List){
     return (List->Size > 0) ? List->Last->Element : NULL;
 }
 
-void Remove(struct LinkedList *List, int index){
+void * Remove(struct LinkedList *List, int index){
+    void * toReturn = NULL;
     if(index == List->Size){
-        RemoveLast(List);
+        toReturn = RemoveLast(List);
     } else if(index == 0){
-        RemoveFirst(List);
+        toReturn = RemoveFirst(List);
     } else if(index < List->Size && index > 0){
         struct ChainNode *node = List->First;
         for(int i = 1; i<index; i++){
@@ -107,38 +108,44 @@ void Remove(struct LinkedList *List, int index){
         }
         struct ChainNode *toDelete = node->Next;
         node->Next = toDelete->Next;
-        FreeChainNode(toDelete);
+        toReturn = toDelete->Element;
+        FreeChainNode(toDelete, 0);
     }
+    return toReturn;
 }
 
-void RemoveFirst(struct LinkedList *List){
-    struct ChainNode *toRemove = List->First;
-
-    List->First = toRemove->Next;
-    FreeChainNode(toRemove);
-    List->Size--;
-    if(List->Size == 0)
-        List->Last = NULL;
+void * RemoveFirst(struct LinkedList *List){
+    void * toReturn = NULL;
+    if(List->Size > 0){
+        struct ChainNode *toRemove = List->First;
+        toReturn = toRemove->Element;
+        List->First = toRemove->Next;
+        FreeChainNode(toRemove, 0);
+        List->Size--;
+        if(List->Size == 0)
+            List->Last = NULL;
+    }
+    return toReturn;
 }
 
-void RemoveLast(struct LinkedList *List){
+void * RemoveLast(struct LinkedList *List){
+    void * toReturn = NULL;
     if(List->Size > 1){
         struct ChainNode *node = List->First;
         while(node->Next != List->Last){
             node = node->Next;
         }
-        FreeChainNode(node->Next);
+        toReturn = node->Next->Element;
+        FreeChainNode(node->Next, 0);
         node->Next = NULL;
         List->Last = node;
         List->Size--;
 
     } else if (List->Size == 1){
-        FreeChainNode(List->First);
+        toReturn = List->First->Element;
+        FreeChainNode(List->First, 0);
         List->First = List->Last = NULL;
         List->Size = 0;
     }
-}
-
-void RemoveElement(struct LinkedList *List, void *Element){
-
+    return toReturn;
 }

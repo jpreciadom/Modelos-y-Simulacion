@@ -16,9 +16,8 @@ short Add(struct LinkedList *List, void *Element, int index);
 short AddLast(struct LinkedList *List, void *Element);
 void * Get(struct LinkedList *List, int index);
 void * GetLast(struct LinkedList *List);
-void Remove(struct LinkedList *List, int index);
-void RemoveFirst(struct LinkedList *List);
-void RemoveLast(struct LinkedList *List);
-void RemoveElement(struct LinkedList *List, void *Element);
+void * Remove(struct LinkedList *List, int index);
+void * RemoveFirst(struct LinkedList *List);
+void * RemoveLast(struct LinkedList *List);
 
 #endif // LINKEDLISTH
