@@ -4,7 +4,7 @@
 #include "lcgrand.h"
 
 
-int next_event_type,numeventos,num_minu,num_q_1,num_q_2,server_status1,server_status2,dat,tipo_a,total_clientes;
+int next_event_type,numeventos,num_minu,num_q_1,num_q_2,server_status1,server_status2,dat,tipo_a,total_clientes_1,total_clientes_2;
 
 float reloj,time_next_event[6],lista_tiempo_esperado_f1[51],lista_tiempo_esperado_f2[51],num,time_esperado_f1,time_esperado_f2,tiempo_total_s1,tiempo_total_s2;
 
@@ -59,13 +59,14 @@ time_esperado_f1=0;
 time_esperado_f2=0;
 tiempo_total_s1=0;
 tiempo_total_s2=0;
-total_clientes=0;
+total_clientes_1=0;
+total_clientes_2=0;
 
-time_next_event[1]=reloj+uniform(1,2); //llega cliente a servidor 1
-time_next_event[2]=1.0e+30; //llega acliente a servidor 2
+time_next_event[1]=reloj+uniform(1,2); //llega a filacliente a servidor 1
+time_next_event[2]=1.0e+30; //llega acliente fila a servidor 2
 time_next_event[3]=1.0e+30; //salida servidor 1
 time_next_event[4]=1.0e+30; //salida servidor 2
-time_next_event[5]=num_minu; //finaliza la simulacion
+time_next_event[5]=900.0; //finaliza la simulacion
 }
 
 void timing(){
@@ -82,12 +83,13 @@ void timing(){
 }
 
 void cliente_arrive_s1(){
-    printf("llego cliente a s1 en %f \n",reloj);
+    printf("llego cliente a f1 en %f \n",reloj);
     num_q_1++;
-    total_clientes++;
+    printf("fila 1 %i \n",num_q_1);
+    total_clientes_1++;
     tipo_a = (rand() % 10)+1;
     if(tipo_a<=3 && num_q_1>0){
-        for(int i=1; i<=num_q_1; i++){
+        for(int i=num_q_1; i>=1; i--){
             lista_tiempo_esperado_f1[i+1]=lista_tiempo_esperado_f1[i];
         }
         lista_tiempo_esperado_f1[1]=reloj;
@@ -99,56 +101,73 @@ void cliente_arrive_s1(){
         cliente_entra_s1();
     }
     time_next_event[1]=reloj+uniform(1,2);
+    printf("proximo cliente llega a f1 en %f \n",time_next_event[1]);
 }
 
 void cliente_arrive_s2(){
-    printf("llego cliente a s2 en %f \n",reloj);
+    printf("llego cliente a f2 en %f \n",reloj);
     num_q_2++;
-    total_clientes++;
+    printf("fila 2 %i \n",num_q_2);
+    total_clientes_2++;
     lista_tiempo_esperado_f2[num_q_2]=reloj;
     if(server_status2==0){
         cliente_entra_s2();
     }
+    time_next_event[2]=1.0e+30;
 }
 
 void cliente_entra_s1(){
     printf("entro cliente a s1 en %f \n",reloj);
     server_status1=1;
-    time_esperado_f1=reloj-lista_tiempo_esperado_f1[1];
+    time_esperado_f1+=reloj-lista_tiempo_esperado_f1[1];
+    printf("re %f tiempo esp %f total %f \n",reloj,lista_tiempo_esperado_f1[1], time_esperado_f1);
     num_q_1--;
+    printf("fila 1 %i \n",num_q_1);
     for(int i=1; i<num_q_1; i++){
         lista_tiempo_esperado_f1[i]=lista_tiempo_esperado_f1[i+1];
     }
     time_next_event[3]=reloj+expon(1);
+    printf("saldra de s1 en %f \n",time_next_event[3]);
     tiempo_total_s1=time_next_event[3]-reloj;
 }
 
 void cliente_entra_s2(){
     printf("entro cliente a s2 en %f \n",reloj);
     server_status2=1;
-    time_esperado_f2=reloj-lista_tiempo_esperado_f2[2];
+    time_esperado_f2+=reloj-lista_tiempo_esperado_f2[2];
     num_q_2--;
+    printf("fila 2 %i \n",num_q_2);
     for(int i=1; i<num_q_2; i++){
         lista_tiempo_esperado_f2[i]=lista_tiempo_esperado_f2[i+1];
     }
     time_next_event[4]=reloj+expon(0.8);
+    printf("saldra de s2 en %f \n",time_next_event[4]);
     tiempo_total_s2=time_next_event[4]-reloj;
 }
 
 void cliente_sale_s1(){
     printf("sale cliente de s1 en %f \n",reloj);
+    if(num_q_1>0){
+        cliente_entra_s1();
+    }
     server_status1=0;
     time_next_event[2]=reloj+uniform(0.5,2);
+    printf("proximo cliente llega a f2 en %f \n",time_next_event[2]);
+    time_next_event[3]=1.0e+30;
 }
 
 void cliente_sale_s2(){
     printf("sale cliente de s2 en %f \n",reloj);
+    if(num_q_2>0){
+        cliente_entra_s2();
+    }
     server_status2=0;
+    time_next_event[4]=1.0e+30;
 }
 
 void report(){
-    float promedio = (time_esperado_f1+time_esperado_f2)/total_clientes;
-    printf("promedio %f",promedio);
+    float promedio = (time_esperado_f1/total_clientes_1)+(time_esperado_f2/total_clientes_2);
+    printf("promedio %f",promedio/2);
 }
 
 
