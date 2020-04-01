@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 1585425489 source:c:\users\juan pablo\desktop\modelos-y-simulacion\tarea 01\ejercicio 1.8\lcgrand.c
 
-1585671243 source:c:\users\juan pablo\desktop\modelos-y-simulacion\tarea 01\ejercicio 1.8\main.c
+1585694753 source:c:\users\juan pablo\desktop\modelos-y-simulacion\tarea 01\ejercicio 1.8\main.c
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
