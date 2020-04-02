@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "queue.h"
 #include "lcgrand.h"
 
@@ -39,6 +40,9 @@ long Eventos[NUMEVENTOS];                       //En el evento 0 llega una pieza
 int PiezasProcesadas;
 long TotalTiempoEsperado;
 int MaxCantPiezasQueEsperaron;
+long TiempoAlcanzadoElMaximo;
+
+void GenerarReporte();
 
 void Inicializacion(){
     Reloj = 0;
@@ -87,25 +91,21 @@ int main() {
     printf("Fin de inicializacion\n\n");
     CambioDeMaquina();
     while(Reloj < tiempoSimulacion){
-        printf("Reloj: %li\n", Reloj);
+        //printf("Reloj: %li\n", Reloj);
         if(Reloj == Eventos[1])
             PiezaProcesada();
         if(Reloj == Eventos[2])
             CambioDeMaquina();
         if(Reloj == Eventos[0])
             LlegadaDeUnaPieza();
-        printf("\n");
+        //printf("\n");
         Timing();
     }
     printf("\n\nFin de la simulacion\n\n");
 
-    double promedio = (double)(TotalTiempoEsperado / PiezasProcesadas);
-    printf("El promedio esperado por las piezas fue %f\n", promedio);
-    for(int i = 0; i<NUMMAQUINAS; i++){
-        printf("La maquina %i se uso %li segundos de %i segundos\n", i, Maquinas[i].TiempoDeUso, TIEMPODEUSO);
-    }
-    printf("%i piezas quedaron sin procesar, mientras que %i piezas fueron procesadas\n", Piezas->Size, PiezasProcesadas);
-    printf("El numero maximo de piezas en la cinta fue %i\n", MaxCantPiezasQueEsperaron);
+    printf("Generando reporte\n");
+    GenerarReporte();
+    printf("Reporte generado\n");
     return 0;
 }
 
@@ -128,7 +128,7 @@ void MeterPiezaALaMaquina(){
     long TiempoDisponible = Eventos[2]-Reloj;
     if(Piezas->Size > 0 && maq->EstadoDeActividad == 0 && TiempoDisponible >= maq->RangosDeDemora[1]){
         TotalTiempoEsperado += Reloj - Peek(Piezas)->TiempoDeLlegada;
-        printf("Se mete una pieza en la maquina que espero %li segundos\n", Reloj - Peek(Piezas)->TiempoDeLlegada);
+        //printf("Se mete una pieza en la maquina que espero %li segundos\n", Reloj - Peek(Piezas)->TiempoDeLlegada);
         FreeNode(Dequeue(Piezas));
         maq->EstadoDeActividad = 1;
         struct Pieza *p;
@@ -139,7 +139,7 @@ void MeterPiezaALaMaquina(){
         p->TiempoDeEntradaALaMaquina = Reloj;
         p->TiempoDeProcesamiento = uniform(maq->RangosDeDemora[0], maq->RangosDeDemora[1]);
         Eventos[1] = Reloj + p->TiempoDeProcesamiento;
-        printf("Sale en %li segundos\n", p->TiempoDeProcesamiento);
+        //printf("Sale en %li segundos\n", p->TiempoDeProcesamiento);
      } else if((Piezas->Size == 0 && maq->EstadoDeActividad == 0) || TiempoDisponible < maq->RangosDeDemora[1]){
         Eventos[1] = -1;
      }
@@ -147,14 +147,14 @@ void MeterPiezaALaMaquina(){
 
 void CambioDeMaquina(){
     MaquinaEnUso = (long)(Reloj/TIEMPODEUSO);
-    printf("Cambio de maquina a la maquina %i\n", MaquinaEnUso);
+    //printf("Cambio de maquina a la maquina %i\n", MaquinaEnUso);
     MeterPiezaALaMaquina();
     Eventos[2] = (MaquinaEnUso+1)*TIEMPODEUSO;
-    printf("Proximo cambio a los %li segundos\n", Eventos[2]);
+    //printf("Proximo cambio a los %li segundos\n", Eventos[2]);
 }
 
 void PiezaProcesada(){
-    printf("Se termino de procesar una pieza en la maquina %i\n", MaquinaEnUso);
+    //printf("Se termino de procesar una pieza en la maquina %i\n", MaquinaEnUso);
     PiezasProcesadas++;
     struct Maquina *maq = (Maquinas + MaquinaEnUso);
     maq->TiempoDeUso += maq->TrabajandoEn->TiempoDeProcesamiento;
@@ -166,12 +166,74 @@ void PiezaProcesada(){
 }
 
 void LlegadaDeUnaPieza(){
-    printf("LLego una pieza\n");
+    //printf("LLego una pieza\n");
     Enqueue(Piezas, initNode(Reloj));
     MeterPiezaALaMaquina();
-    if(MaxCantPiezasQueEsperaron < Piezas->Size)
+    if(MaxCantPiezasQueEsperaron < Piezas->Size){
         MaxCantPiezasQueEsperaron = Piezas->Size;
+        TiempoAlcanzadoElMaximo = Reloj;
+    }
 
     Eventos[0] = Reloj + (long)uniform(10, 20);
-    printf("La proxima pieza llega a los %li segundos\n", Eventos[0]);
+    //printf("La proxima pieza llega a los %li segundos\n", Eventos[0]);
+}
+
+char* LongToString(unsigned long toConvert){
+    char *c = malloc(2);
+    *c = (char)(toConvert % 10 + '0');
+    *(c + 1) = '\0';
+    toConvert /= 10;
+    while(toConvert > 0){
+        char *a = malloc(2);
+        *a = (char)(toConvert % 10 + '0');
+        *(a + 1) = '\0';
+        strcat(a, c);
+        toConvert /= 10;
+        free(c);
+        c = a;
+    }
+    return c;
+}
+
+void GenerarReporte(){
+    FILE *reporte = fopen("Reporte.txt", "r+");
+    if(reporte == NULL){
+        reporte = fopen("Reporte.txt", "w+");
+        char * Encabezado = "Dia,Piezas producidas,Max en cola,Tiempo en el que se llego al maximo\n";
+        fwrite(Encabezado, strlen(Encabezado), 1, reporte);
+        free(Encabezado);
+    }
+
+    rewind(reporte);
+    int dia = -1;
+    while(feof(reporte) == 0){
+        char c;
+        fread(&c, 1, 1, reporte);
+        if(c == '\n')
+            dia++;
+    }
+    fclose(reporte);
+    reporte = fopen("Reporte.txt", "a");
+
+    char * Data = LongToString(dia);
+    fwrite(Data, strlen(Data), 1, reporte);
+    free(Data);
+    fwrite(",", 1, 1, reporte);
+
+    Data = LongToString(PiezasProcesadas);
+    fwrite(Data, strlen(Data), 1, reporte);
+    free(Data);
+    fwrite(",", 1, 1, reporte);
+
+    Data = LongToString(MaxCantPiezasQueEsperaron);
+    fwrite(Data, strlen(Data), 1, reporte);
+    free(Data);
+    fwrite(",", 1, 1, reporte);
+
+    Data = LongToString(TiempoAlcanzadoElMaximo);
+    fwrite(Data, strlen(Data), 1, reporte);
+    free(Data);
+    fwrite("\n", 1, 1, reporte);
+
+    fclose(reporte);
 }

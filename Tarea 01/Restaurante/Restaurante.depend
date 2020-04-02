@@ -12,8 +12,14 @@
 1585687549 c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 01\restaurante\linkedlist.h
 	"ChainNode.h"
 
-1585687912 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 01\restaurante\main.c
+1585689024 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 01\restaurante\main.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
+	"lcgrand.h"
+
+1585663841 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 01\restaurante\lcgrand.c
+
+1585663841 c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 01\restaurante\lcgrand.h
+	"lcgrand.h"
 
