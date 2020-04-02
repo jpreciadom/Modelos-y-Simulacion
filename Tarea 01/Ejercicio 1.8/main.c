@@ -4,9 +4,11 @@
 #include "lcgrand.h"
 
 
-int next_event_type,numeventos,num_minu,num_q_1,num_q_2,server_status1,server_status2,dat,tipo_a,total_clientes_1,total_clientes_2;
+int next_event_type,numeventos,num_q_1,num_q_2,server_status1,server_status2,dat,tipo_a,total_clientes_1,total_clientes_2,sal_s1,sal_s2,prom_fila1, prom_fila2;
 
-float reloj,time_next_event[6],lista_tiempo_esperado_f1[51],lista_tiempo_esperado_f2[51],num,time_esperado_f1,time_esperado_f2,tiempo_total_s1,tiempo_total_s2;
+float reloj,time_next_event[6],num_minu,lista_tiempo_esperado_f1[51],lista_tiempo_esperado_f2[51],num,time_esperado_f1,time_esperado_f2,tiempo_total_s1,tiempo_total_s2,mean_serv1,mean_serv2;
+
+FILE  *outfile;
 
 void initialize(void);
 void timing(void);
@@ -22,7 +24,11 @@ float expon(float mean);
 
 int main(){
     srand(time(0));
+
+    outfile = fopen("mm1.out", "w");
+
     numeventos=5;
+for(int i=0; i<20; i++){
     initialize();
     do{
         timing();
@@ -45,12 +51,13 @@ int main(){
         }
 
     }while(next_event_type!=5);
-
+    printf("\n\n");
+}
 }
 
 void initialize(){
 reloj=0;
-num_minu=900;
+num_minu=900.0;
 server_status1=0;
 server_status2=0;
 num_q_1=0;
@@ -61,12 +68,16 @@ tiempo_total_s1=0;
 tiempo_total_s2=0;
 total_clientes_1=0;
 total_clientes_2=0;
+sal_s1=0;
+sal_s2=0;
+prom_fila1=0;
+prom_fila2=0;
 
-time_next_event[1]=reloj+uniform(1,2); //llega a filacliente a servidor 1
+time_next_event[1]=reloj+uniform(1.0,2.0); //llega a filacliente a servidor 1
 time_next_event[2]=1.0e+30; //llega acliente fila a servidor 2
 time_next_event[3]=1.0e+30; //salida servidor 1
 time_next_event[4]=1.0e+30; //salida servidor 2
-time_next_event[5]=900.0; //finaliza la simulacion
+time_next_event[5]=num_minu; //finaliza la simulacion
 }
 
 void timing(){
@@ -85,8 +96,9 @@ void timing(){
 void cliente_arrive_s1(){
     //printf("llego cliente a f1 en %f \n",reloj);
     num_q_1++;
+    prom_fila1+=num_q_1;
     //printf("fila 1 %i \n",num_q_1);
-    total_clientes_1++;
+    total_clientes_1=total_clientes_1+1;
     tipo_a = (rand() % 10)+1;
     if(tipo_a<=3 && num_q_1>0){
         for(int i=num_q_1; i>=1; i--){
@@ -100,13 +112,14 @@ void cliente_arrive_s1(){
     if(server_status1==0){
         cliente_entra_s1();
     }
-    time_next_event[1]=reloj+uniform(1,2);
+    time_next_event[1]=reloj+uniform(1.0,2.0);
     //printf("proximo cliente llega a f1 en %f \n",time_next_event[1]);
 }
 
 void cliente_arrive_s2(){
     //printf("llego cliente a f2 en %f \n",reloj);
     num_q_2++;
+    prom_fila2+=num_q_2;
     //printf("fila 2 %i \n",num_q_2);
     total_clientes_2++;
     lista_tiempo_esperado_f2[num_q_2]=reloj;
@@ -126,9 +139,9 @@ void cliente_entra_s1(){
     for(int i=1; i<num_q_1; i++){
         lista_tiempo_esperado_f1[i]=lista_tiempo_esperado_f1[i+1];
     }
-    time_next_event[3]=reloj+expon(1);
+    time_next_event[3]=reloj+expon(1.0);
     //printf("saldra de s1 en %f \n",time_next_event[3]);
-    tiempo_total_s1=time_next_event[3]-reloj;
+    tiempo_total_s1+=time_next_event[3]-reloj;
 }
 
 void cliente_entra_s2(){
@@ -143,7 +156,7 @@ void cliente_entra_s2(){
     }
     time_next_event[4]=reloj+expon(0.8);
     //printf("saldra de s2 en %f \n",time_next_event[4]);
-    tiempo_total_s2=time_next_event[4]-reloj;
+    tiempo_total_s2+=time_next_event[4]-reloj;
 }
 
 void cliente_sale_s1(){
@@ -152,9 +165,10 @@ void cliente_sale_s1(){
         cliente_entra_s1();
     }
     server_status1=0;
-    time_next_event[2]=reloj+uniform(0.5,2);
+    time_next_event[2]=reloj+uniform(0.5,2.0);
     //printf("proximo cliente llega a f2 en %f \n",time_next_event[2]);
     time_next_event[3]=1.0e+30;
+    sal_s1++;
 }
 
 void cliente_sale_s2(){
@@ -164,20 +178,30 @@ void cliente_sale_s2(){
     }
     server_status2=0;
     time_next_event[4]=1.0e+30;
+    sal_s2++;
 }
 
 void report(){
     float promedio1 = (time_esperado_f1/total_clientes_1);
     float promedio2 = (time_esperado_f2/total_clientes_2);
+    float promedio_per1 = prom_fila1/total_clientes_1;
+    float promedio_per2 = prom_fila2/total_clientes_2;
     float promedio = (promedio1+promedio2)/2;
-    printf("prom %f \n",promedio);
+    float promedio_uso1 = tiempo_total_s1/total_clientes_1;
+    float promedio_uso2 = tiempo_total_s2/total_clientes_2;
+    printf("promedio de espera en fila 1 %f promedio de espera en fila 2 %f promedio de espera total %f \n",promedio1,promedio2,promedio);
+    fprintf(outfile,"promedio de espera en fila 1 %f promedio de espera en fila 2 %f promedio de espera total %f \n",promedio1,promedio2,promedio);
+    printf("promedio de personas en fila 1%f promedio de personas en fila 2 %f\n",promedio_per1,promedio_per2);
+    fprintf(outfile,"promedio de personas en fila 1%f promedio de personas en fila 2 %f \n",promedio_per1,promedio_per2);
+    printf("promedio de uso de servidor 1 %f promedio de uso de servidor 2 %f \n",promedio_uso1,promedio_uso2);
+    fprintf(outfile,"promedio de uso de servidor 1 %f promedio de uso de servidor 2 %f \n\n",promedio_uso1,promedio_uso2);
 }
 
 
 float expon(float mean)  /* Exponential variate generation function. */
 {
-    int f = rand() % 20;
-    return -mean * log((lcgrand(f)));
+    //int f = rand() % 20;
+    return -mean * log((lcgrand(1)));
 }
 
 double uniform(double a, double b) {                   /* Uniform variate generation function. */

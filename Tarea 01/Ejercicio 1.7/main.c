@@ -5,14 +5,16 @@
 
 #define UNIF 10
 
-int bus_status,next_event_type,num_min,num_N,num_in_q_A,num_in_q_B,total_pasajeros,bus_station,numeventos;
+int bus_status,next_event_type,num_min,num_N,num_in_q_A,num_in_q_B,total_pasajeros_a,total_pasajeros_b,bus_station,numeventos;
 
-float reloj,mean_arrival_A,time_next_event[6], promedio_esperado, suma_tiempo_esperado, num_p_esperando_A[51], num_p_esperando_B[51];
+float reloj,mean_arrival_A,time_next_event[6], promedio_esperado_a,promedio_esperado_b, suma_tiempo_esperado_a,suma_tiempo_esperado_b, num_p_esperando_A[51], num_p_esperando_B[51];
 
 float mean_intertravel  = 31.0;
 float desviation= 5.0;
 
 float mean_arrival_B=12;
+
+FILE  *outfile;
 
 void initialize(void);
 void timing(void);
@@ -26,32 +28,34 @@ float normal(void);
 
 int main(){
     srand(time(0));
-    numeventos=5;
-for(int i=1; i<=10; i++){
-    num_N=i;
-    initialize();
-    do{
-        timing();
-        switch(next_event_type){
-        case 1:
-            passenger_arrival_A();
-            break;
-        case 2:
-            passenger_arrival_B();
-            break;
-        case 3:
-            bus_travel();
-            break;
-        case 4:
-            bus_arrive();
-            break;
-        case 5:
-            report();
-            break;
-        }
 
-    }while(next_event_type!=5);
-}
+    outfile = fopen("mm1.out", "w");
+    numeventos=5;
+    for(int i=1; i<=10; i++){
+        num_N=i;
+        initialize();
+        do{
+            timing();
+            switch(next_event_type){
+            case 1:
+                passenger_arrival_A();
+                break;
+            case 2:
+                passenger_arrival_B();
+                break;
+            case 3:
+                bus_travel();
+                break;
+            case 4:
+                bus_arrive();
+                break;
+            case 5:
+                report();
+                break;
+            }
+
+        }while(next_event_type!=5);
+    }
 }
 
 void initialize(){
@@ -63,9 +67,12 @@ mean_arrival_A=6.7;
 num_min=480;
 bus_status=0;
 
-suma_tiempo_esperado=0.0;
-promedio_esperado=0.0;
-total_pasajeros=0;
+suma_tiempo_esperado_a=0.0;
+suma_tiempo_esperado_b=0.0;
+promedio_esperado_a=0.0;
+promedio_esperado_b=0.0;
+total_pasajeros_a=0;
+total_pasajeros_b=0;
 
 time_next_event[1]=reloj+poisson(mean_arrival_A);   /*llegada de pasajero a A*/
 time_next_event[2]=reloj+poisson(mean_arrival_B);   /*llegada de pasajero B*/
@@ -116,17 +123,17 @@ void bus_travel(){
     bus_status=1;
     if(bus_station==1){
        //printf("sale bus en %f con pasajeros %i \n",reloj,num_in_q_A);
-        total_pasajeros+=num_in_q_A;
+        total_pasajeros_a+=num_in_q_A;
         for(int i=1; i<=num_in_q_A; i++){
-            suma_tiempo_esperado=suma_tiempo_esperado+(reloj-num_p_esperando_A[i]);
+            suma_tiempo_esperado_a=suma_tiempo_esperado_a+(reloj-num_p_esperando_A[i]);
             num_p_esperando_A[i]=-1;
         }
         num_in_q_A=0;
     }else{
         //printf("sale bus %f con pasajeros %i \n",reloj,num_in_q_B);
-        total_pasajeros+=num_in_q_B;
+        total_pasajeros_b+=num_in_q_B;
         for(int i=1; i<=num_in_q_B; i++){
-            suma_tiempo_esperado=suma_tiempo_esperado+(reloj-num_p_esperando_B[i]);
+            suma_tiempo_esperado_b=suma_tiempo_esperado_b+(reloj-num_p_esperando_B[i]);
             //printf("suma %f \n",suma_tiempo_esperado);
             num_p_esperando_B[i]=-1;
         }
@@ -154,9 +161,11 @@ void bus_arrive(){
 }
 
 void report(){
-    promedio_esperado = suma_tiempo_esperado/total_pasajeros;
+    promedio_esperado_a = suma_tiempo_esperado_a/total_pasajeros_a;
+    promedio_esperado_b = suma_tiempo_esperado_b/total_pasajeros_b;
     //printf("suma %f y pasajeros %i \n",suma_tiempo_esperado,total_pasajeros);
-    printf("promedio %f numero N %i \n",promedio_esperado,num_N);
+    printf("\n numero N:%i    promedio esperado fila a:%f    promedio esperado fila b:%f     promedio total:%f \n\n",num_N,promedio_esperado_a,promedio_esperado_b,(promedio_esperado_a+promedio_esperado_b)/2);
+    fprintf(outfile,"\n numero N:%i    promedio esperado fila a:%f    promedio esperado fila b:%f     promedio total:%f \n\n",num_N,promedio_esperado_a,promedio_esperado_b,(promedio_esperado_a+promedio_esperado_b)/2);
 }
 
 
