@@ -39,6 +39,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="LinkedList.h" />
+		<Unit filename="lcgrand.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lcgrand.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

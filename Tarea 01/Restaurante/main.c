@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "LinkedList.h"
+#include "lcgrand.h"
 
 #define TIMESIMULATION 7200
 
@@ -132,7 +133,30 @@ void NuevoGrupo(){
 }
 
 void NuevoPedido(){
+    //Se calcula el tiempo de entrega de los pedidos
+    //Se calcula el tiempo del siguiente pedido que se va a hacer
 
+    struct ChainNode *iterator = Personas_Con_Pedido->First;
+    long ProximoPedido = -1;
+    while(iterator!=NULL){
+        struct Grupo_Personas *esperando = (struct Grupo_Personas*)iterator->Element;
+        if(esperando->Estimado_Pensando_Pedido == Reloj){
+            struct Pedido *nuevoPedido;
+            do{
+                nuevoPedido = (struct Pedido *)malloc(sizeof(struct Pedido));
+            } while(nuevoPedido == NULL);
+            nuevoPedido->TiempoTomado = Reloj;
+            nuevoPedido->Tiempo_Estimado_Entrega = Reloj + rand()%30 + 285;
+            esperando->pedido = nuevoPedido;
+            if(nuevoPedido->Tiempo_Estimado_Entrega < Eventos[4]){
+                Eventos[4] = nuevoPedido->Tiempo_Estimado_Entrega;
+            }
+        } else if(esperando->Estimado_Pensando_Pedido < ProximoPedido || ProximoPedido == -1) {
+            ProximoPedido = esperando->Estimado_Pensando_Pedido;
+        }
+        iterator = iterator->Next;
+    }
+    Eventos[3] = ProximoPedido;
 }
 
 void EntregaPedido(){
