@@ -1,1 +1,170 @@
-prueba 54.000000
+N es igual a 1 
+
+
+Delays in queue, in minutes:
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         3.09810          558.000          6.46751       0.00415802 
+________________________________________________________________________
+
+
+
+Time simulation ended:     481.025 minutes
+
+N es igual a 2 
+
+
+Delays in queue, in minutes:
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         3.03437          507.000          7.68919       0.00904846 
+________________________________________________________________________
+
+
+
+Time simulation ended:     480.215 minutes
+
+N es igual a 3 
+
+
+Delays in queue, in minutes:
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         3.33185          552.000          6.39133       0.00257874 
+________________________________________________________________________
+
+
+
+Time simulation ended:     480.039 minutes
+
+N es igual a 4 
+
+
+Delays in queue, in minutes:
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         3.22871          538.000          6.57811       0.00341797 
+________________________________________________________________________
+
+
+
+Time simulation ended:     481.029 minutes
+
+N es igual a 5 
+
+
+Delays in queue, in minutes:
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         2.96346          504.000          7.38046        0.0130157 
+________________________________________________________________________
+
+
+
+Time simulation ended:     480.445 minutes
+
+N es igual a 6 
+
+
+Delays in queue, in minutes:
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         3.34336          556.000          11.2418       0.00299072 
+________________________________________________________________________
+
+
+
+Time simulation ended:     481.386 minutes
+
+N es igual a 7 
+
+
+Delays in queue, in minutes:
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         3.52681          530.000          12.5629      0.000823975 
+________________________________________________________________________
+
+
+
+Time simulation ended:     480.686 minutes
+
+N es igual a 8 
+
+
+Delays in queue, in minutes:
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         3.32960          553.000          11.6249        0.0176086 
+________________________________________________________________________
+
+
+
+Time simulation ended:     480.752 minutes
+
+N es igual a 9 
+
+
+Delays in queue, in minutes:
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         4.10168          503.000          13.6432        0.0175476 
+________________________________________________________________________
+
+
+
+Time simulation ended:     481.056 minutes
+
+N es igual a 10 
+
+
+Delays in queue, in minutes:
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         3.85400          589.000          13.0186       0.00595093 
+________________________________________________________________________
+
+
+
+Time simulation ended:     480.099 minutes
+
