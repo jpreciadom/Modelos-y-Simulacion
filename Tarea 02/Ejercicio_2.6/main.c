@@ -30,7 +30,7 @@
 #define STREAM_ARRIVAL    1
 #define STREAM_SERVICE    2  /* Random-number stream for pieces produce in A. */
 
-int categoria_transaccion, num_ATMS, tipo_fila, fila;
+int categoria_transaccion, num_ATMS, tipo_fila, fila, num_p;
 float mean_arrivals, mean_service_1, mean_service_2, mean_service_3, mean_service_4, ATMS[7];
 FILE  *infile, *outfile;
 
@@ -119,6 +119,7 @@ int main()
                 break;
         }
     }
+    printf("%i \n", num_p);
     report();
     fclose(infile);
     fclose(outfile);
@@ -136,6 +137,7 @@ void init_model(void)  /* Initialization function. */
     mean_service_4 = 3;
     tipo_fila = 1;    //cero es unaf ila y uno es 6 filas
     fila = 0;
+    num_p = 0;
     for(int i=1; i<=6; i++){
         ATMS[i]=0;
     }
@@ -147,17 +149,37 @@ void init_model(void)  /* Initialization function. */
 
 void arrive_customer(void){
 
-    //printf("llego cliente en %f \n",sim_time);
+    printf("llego cliente en %f \n",sim_time);
     event_schedule(sim_time + expon(mean_arrivals, STREAM_ARRIVAL),
                    EVENT_ARRIVE_C);
-
+    num_p++;
     if(tipo_fila==0){
         transfer[1] = sim_time;
         list_file(LAST,LIST_QUEUE_1);
 
         for(int i=1; i<=6; i++){
-            if(ATMS[i]==0){
+            if(ATMS[i]==0 && i==1){
                 event_schedule(sim_time,EVENT_ENTER_ATM1);
+                ATMS[i]=1;
+                break;
+            }else if(ATMS[i]==0 && i==2){
+                event_schedule(sim_time,EVENT_ENTER_ATM2);
+                ATMS[i]=1;
+                break;
+            }else if(ATMS[i]==0 && i==3){
+                event_schedule(sim_time,EVENT_ENTER_ATM3);
+                ATMS[i]=1;
+                break;
+            }else if(ATMS[i]==0 && i==4){
+                event_schedule(sim_time,EVENT_ENTER_ATM4);
+                ATMS[i]=1;
+                break;
+            }else if(ATMS[i]==0 && i==5){
+                event_schedule(sim_time,EVENT_ENTER_ATM5);
+                ATMS[i]=1;
+                break;
+            }else if(ATMS[i]==0 && i==6){
+                event_schedule(sim_time,EVENT_ENTER_ATM6);
                 ATMS[i]=1;
                 break;
             }
@@ -227,7 +249,7 @@ void arrive_customer(void){
 
 void customer_enters_ATM1(void){
 
-    //printf("cliente entra a cajero 1 %f \n",sim_time);
+    printf("cliente entra a cajero 1 %f \n",sim_time);
 
     list_remove(FIRST, LIST_QUEUE_1);
     sampst(sim_time - transfer[1], SAMPST_DELAYS_Q1);
@@ -249,10 +271,15 @@ void customer_enters_ATM1(void){
 }
 
 void customer_enters_ATM2(void){
-    //printf("cliente entra a cajero 2 %f \n",sim_time);
+    printf("cliente entra a cajero 2 %f \n",sim_time);
 
-    list_remove(FIRST, LIST_QUEUE_2);
-    sampst(sim_time - transfer[1], SAMPST_DELAYS_Q2);
+    if(tipo_fila==0){
+        list_remove(FIRST, LIST_QUEUE_1);
+        sampst(sim_time - transfer[1], SAMPST_DELAYS_Q1);
+    }else{
+        list_remove(FIRST, LIST_QUEUE_2);
+        sampst(sim_time - transfer[1], SAMPST_DELAYS_Q2);
+    }
 
     categoria_transaccion = (rand() % 100)+1;
     if(categoria_transaccion>=1 && categoria_transaccion<=15){
@@ -271,10 +298,15 @@ void customer_enters_ATM2(void){
 }
 
 void customer_enters_ATM3(void){
-    //printf("cliente entra a cajero 3 %f \n",sim_time);
+    printf("cliente entra a cajero 3 %f \n",sim_time);
 
-    list_remove(FIRST, LIST_QUEUE_3);
-    sampst(sim_time - transfer[1], SAMPST_DELAYS_Q3);
+    if(tipo_fila==0){
+        list_remove(FIRST, LIST_QUEUE_1);
+        sampst(sim_time - transfer[1], SAMPST_DELAYS_Q1);
+    }else{
+        list_remove(FIRST, LIST_QUEUE_3);
+        sampst(sim_time - transfer[1], SAMPST_DELAYS_Q3);
+    }
 
     categoria_transaccion = (rand() % 100)+1;
     if(categoria_transaccion>=1 && categoria_transaccion<=15){
@@ -293,10 +325,15 @@ void customer_enters_ATM3(void){
 }
 
 void customer_enters_ATM4(void){
-    //printf("cliente entra a cajero 4 %f \n",sim_time);
+    printf("cliente entra a cajero 4 %f \n",sim_time);
 
-    list_remove(FIRST,LIST_QUEUE_4);
-    sampst(sim_time - transfer[1], SAMPST_DELAYS_Q4);
+    if(tipo_fila==0){
+        list_remove(FIRST, LIST_QUEUE_1);
+        sampst(sim_time - transfer[1], SAMPST_DELAYS_Q1);
+    }else{
+        list_remove(FIRST, LIST_QUEUE_4);
+        sampst(sim_time - transfer[1], SAMPST_DELAYS_Q4);
+    }
 
     categoria_transaccion = (rand() % 100)+1;
     if(categoria_transaccion>=1 && categoria_transaccion<=15){
@@ -315,10 +352,15 @@ void customer_enters_ATM4(void){
 }
 
 void customer_enters_ATM5(void){
-    //printf("cliente entra a cajero 5 %f \n",sim_time);
+    printf("cliente entra a cajero 5 %f \n",sim_time);
 
-    list_remove(FIRST, LIST_QUEUE_5);
-    sampst(sim_time - transfer[1], SAMPST_DELAYS_Q5);
+    if(tipo_fila==0){
+        list_remove(FIRST, LIST_QUEUE_1);
+        sampst(sim_time - transfer[1], SAMPST_DELAYS_Q1);
+    }else{
+        list_remove(FIRST, LIST_QUEUE_5);
+        sampst(sim_time - transfer[1], SAMPST_DELAYS_Q5);
+    }
 
     categoria_transaccion = (rand() % 100)+1;
     if(categoria_transaccion>=1 && categoria_transaccion<=15){
@@ -337,10 +379,15 @@ void customer_enters_ATM5(void){
 }
 
 void customer_enters_ATM6(void){
-    //printf("cliente entra a cajero 6 %f \n",sim_time);
+    printf("cliente entra a cajero 6 %f \n",sim_time);
 
-    list_remove(FIRST, LIST_QUEUE_6);
-    sampst(sim_time - transfer[1], SAMPST_DELAYS_Q6);
+    if(tipo_fila==0){
+        list_remove(FIRST, LIST_QUEUE_1);
+        sampst(sim_time - transfer[1], SAMPST_DELAYS_Q1);
+    }else{
+        list_remove(FIRST, LIST_QUEUE_6);
+        sampst(sim_time - transfer[1], SAMPST_DELAYS_Q6);
+    }
 
     categoria_transaccion = (rand() % 100)+1;
     if(categoria_transaccion>=1 && categoria_transaccion<=15){
@@ -374,49 +421,85 @@ void exit_ATM1(void){
 void exit_ATM2(void){
     ATMS[2]=0;
 
-    if(list_size[LIST_QUEUE_2]>0){
-        event_schedule(sim_time,EVENT_ENTER_ATM2);
-        ATMS[2]=1;
+    if(tipo_fila==0){
+        if(list_size[LIST_QUEUE_1]>0){
+            event_schedule(sim_time,EVENT_ENTER_ATM2);
+            ATMS[2]=1;
+        }
+    }else{
+        if(list_size[LIST_QUEUE_2]>0){
+            event_schedule(sim_time,EVENT_ENTER_ATM2);
+            ATMS[2]=1;
+        }
     }
 }
 
 void exit_ATM3(void){
     ATMS[3]=0;
 
-    if(list_size[LIST_QUEUE_3]>0){
-        event_schedule(sim_time,EVENT_ENTER_ATM3);
-        ATMS[3]=1;
+    if(tipo_fila==0){
+        if(list_size[LIST_QUEUE_1]>0){
+            event_schedule(sim_time,EVENT_ENTER_ATM3);
+            ATMS[3]=1;
+        }
+    }else{
+        if(list_size[LIST_QUEUE_3]>0){
+            event_schedule(sim_time,EVENT_ENTER_ATM3);
+            ATMS[3]=1;
+        }
     }
 }
 
 void exit_ATM4(void){
     ATMS[4]=0;
 
-    if(list_size[LIST_QUEUE_4]>0){
-        event_schedule(sim_time,EVENT_ENTER_ATM4);
-        ATMS[4]=1;
+    if(tipo_fila==0){
+        if(list_size[LIST_QUEUE_1]>0){
+            event_schedule(sim_time,EVENT_ENTER_ATM4);
+            ATMS[4]=1;
+        }
+    }else{
+        if(list_size[LIST_QUEUE_4]>0){
+            event_schedule(sim_time,EVENT_ENTER_ATM4);
+            ATMS[4]=1;
+        }
     }
 }
 
 void exit_ATM5(void){
     ATMS[5]=0;
 
-    if(list_size[LIST_QUEUE_5]>0){
-        event_schedule(sim_time,EVENT_ENTER_ATM5);
-        ATMS[5]=1;
+    if(tipo_fila==0){
+        if(list_size[LIST_QUEUE_1]>0){
+            event_schedule(sim_time,EVENT_ENTER_ATM5);
+            ATMS[5]=1;
+        }
+    }else{
+        if(list_size[LIST_QUEUE_5]>0){
+            event_schedule(sim_time,EVENT_ENTER_ATM5);
+            ATMS[5]=1;
+        }
     }
 }
 
 void exit_ATM6(void){
     ATMS[6]=0;
 
-    if(list_size[LIST_QUEUE_6]>0){
-        event_schedule(sim_time,EVENT_ENTER_ATM6);
-        ATMS[6]=1;
+    if(tipo_fila==0){
+        if(list_size[LIST_QUEUE_1]>0){
+            event_schedule(sim_time,EVENT_ENTER_ATM6);
+            ATMS[6]=1;
+        }
+    }else{
+        if(list_size[LIST_QUEUE_6]>0){
+            event_schedule(sim_time,EVENT_ENTER_ATM6);
+            ATMS[6]=1;
+        }
     }
 }
 
 void report(void){
+    float promedio = 0;
     if(tipo_fila==0){
         fprintf(outfile, "\nDelays in queue 1, in minutes:\n");
         out_sampst(outfile, SAMPST_DELAYS_Q1, SAMPST_DELAYS_Q1);
@@ -426,22 +509,26 @@ void report(void){
         */
         fprintf(outfile, "\nTime simulation ended:%12.3f minutes\n\n", sim_time);
     }else{
-        fprintf(outfile, "\nDelays in queue 1, in minutes:\n");
-        out_sampst(outfile, SAMPST_DELAYS_Q1, SAMPST_DELAYS_Q1);
-        fprintf(outfile, "\nDelays in queue 2, in minutes:\n");
-        out_sampst(outfile, SAMPST_DELAYS_Q2, SAMPST_DELAYS_Q2);
-        fprintf(outfile, "\nDelays in queue 3, in minutes:\n");
-        out_sampst(outfile, SAMPST_DELAYS_Q3, SAMPST_DELAYS_Q3);
-        fprintf(outfile, "\nDelays in queue 4, in minutes:\n");
-        out_sampst(outfile, SAMPST_DELAYS_Q4, SAMPST_DELAYS_Q4);
-        fprintf(outfile, "\nDelays in queue 5, in minutes:\n");
-        out_sampst(outfile, SAMPST_DELAYS_Q5, SAMPST_DELAYS_Q5);
-        fprintf(outfile, "\nDelays in queue 6, in minutes:\n");
-        out_sampst(outfile, SAMPST_DELAYS_Q6, SAMPST_DELAYS_Q6);
+        fprintf(outfile, "\nDelays in queues, in minutes:\n");
+        out_sampst(outfile, SAMPST_DELAYS_Q1, SAMPST_DELAYS_Q6);
+        sampst(0.0, -LIST_QUEUE_1);
+        promedio = promedio + transfer[1];
+        sampst(0.0, -LIST_QUEUE_2);
+        promedio = promedio + transfer[1];
+        sampst(0.0, -LIST_QUEUE_3);
+        promedio = promedio + transfer[1];
+        sampst(0.0, -LIST_QUEUE_4);
+        promedio = promedio + transfer[1];
+        sampst(0.0, -LIST_QUEUE_5);
+        promedio = promedio + transfer[1];
+        sampst(0.0, -LIST_QUEUE_6);
+        promedio = promedio + transfer[1];
+        promedio = promedio/6;
         /*
         fprintf(outfile, "\nFila maquina A (1)):\n");
         out_filest(outfile, LIST_MACHINE_A,LIST_MACHINE_A);
         */
+        fprintf(outfile,"\n el promedio de espera en las colas es: %f\n\n", promedio);
         fprintf(outfile, "\nTime simulation ended:%12.3f minutes\n\n", sim_time);
     }
 }
