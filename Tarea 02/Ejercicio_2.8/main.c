@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "simlib.h"
+#include "Lector.h"
 
 //Eventos
 #define LLEGADA_DE_UN_BARCO     1
@@ -68,12 +69,14 @@ int main() {
 }
 
 void init_Model(){
+    file = inFile;
+    delimiter = ',';
     long Segundos_Dia = 3600 * 24;
     Expo_Llegada = 1.25 * Segundos_Dia;
     Tiempo_Descarga[0] = 0.5 * Segundos_Dia;
     Tiempo_Descarga[1] = 1.5 * Segundos_Dia;
 
-    SegundosSimulacion = 90 * Segundos_Dia;
+    SegundosSimulacion = NextLong() * Segundos_Dia;
 
     for(int i = 0; i<2; i++){
         Gruas[i].Descargando = NULL;
@@ -101,7 +104,7 @@ void PasarALasGruas(){
     if(Gruas[1].Descargando == NULL)
         GruasLibres += 2;
 
-    if(list_size[COLA] == 0){           //No hay mas barcos en cola
+    if(list_size[COLA] == 0){           //No hay mas barcos en cola, entonces ambas gruas pasar a trabajar a un mismo barco
         if(GruasLibres == 1){
             event_cancel(FIN_DE_DESCARGA);
 
@@ -131,6 +134,7 @@ void PasarALasGruas(){
                 reg = malloc(sizeof(struct BarcoEnDescarga));
                 reg->TiempoDeEntradaALaGrua = sim_time;
                 reg->TiempoDeFinalizacion = sim_time + uniform(Tiempo_Descarga[0], Tiempo_Descarga[1], STREAM_LLEGADA);
+                Gruas[1].Descargando = reg;
                 event_schedule(reg->TiempoDeFinalizacion, FIN_DE_DESCARGA);
             }
         } else if(GruasLibres == 1){//la grua 0 esta libre

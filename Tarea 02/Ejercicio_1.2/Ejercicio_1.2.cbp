@@ -38,7 +38,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="simlib.h" />
-		<Unit filename="simlibdefs.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
