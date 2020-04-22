@@ -101,7 +101,7 @@ void PasarALasGruas(){
     if(Gruas[1].Descargando == NULL)
         GruasLibres += 2;
 
-    if(list_size[COLA] == 0){           //No hay mas barcos en cola
+    if(list_size[COLA] == 0){           //No hay mas barcos en cola, entonces ambas gruas pasar a trabajar a un mismo barco
         if(GruasLibres == 1){
             event_cancel(FIN_DE_DESCARGA);
 
@@ -131,6 +131,7 @@ void PasarALasGruas(){
                 reg = malloc(sizeof(struct BarcoEnDescarga));
                 reg->TiempoDeEntradaALaGrua = sim_time;
                 reg->TiempoDeFinalizacion = sim_time + uniform(Tiempo_Descarga[0], Tiempo_Descarga[1], STREAM_LLEGADA);
+                Gruas[1].Descargando = reg;
                 event_schedule(reg->TiempoDeFinalizacion, FIN_DE_DESCARGA);
             }
         } else if(GruasLibres == 1){//la grua 0 esta libre
