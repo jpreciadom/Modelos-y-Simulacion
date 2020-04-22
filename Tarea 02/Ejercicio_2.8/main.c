@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "simlib.h"
+#include "Lector.h"
 
 //Eventos
 #define LLEGADA_DE_UN_BARCO     1
@@ -68,12 +69,14 @@ int main() {
 }
 
 void init_Model(){
+    file = inFile;
+    delimiter = ',';
     long Segundos_Dia = 3600 * 24;
     Expo_Llegada = 1.25 * Segundos_Dia;
     Tiempo_Descarga[0] = 0.5 * Segundos_Dia;
     Tiempo_Descarga[1] = 1.5 * Segundos_Dia;
 
-    SegundosSimulacion = 90 * Segundos_Dia;
+    SegundosSimulacion = NextLong() * Segundos_Dia;
 
     for(int i = 0; i<2; i++){
         Gruas[i].Descargando = NULL;
