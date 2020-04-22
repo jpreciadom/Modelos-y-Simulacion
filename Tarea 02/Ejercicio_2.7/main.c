@@ -24,6 +24,7 @@ float normal(void);
 
 int main()
 {
+    srand(time(0));
     infile  = fopen("Ejercicio_2.7.in",  "r");
     outfile = fopen("Ejercicio_2.7.out", "w");
 
@@ -80,7 +81,7 @@ void init_model(void)  /* Initialization function. */
     //num_N=5;
     mean_intertravel = 3;
     desviation = 0.08333;
-    mean_produce_A = 0.9;
+    mean_produce_A = 1.1111;
     montacargas_state = 0;
     event_schedule(sim_time + expon(mean_produce_A, STREAM_PRODUCE_A),
                    EVENT_PRODUCE_PIECE);

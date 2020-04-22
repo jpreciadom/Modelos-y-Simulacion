@@ -710,7 +710,7 @@ float erlang(int m, float mean, int stream)  /* Erlang variate generation
       execute
           lcgrandst(zset, stream);
       where lcgrandst is a void function and zset must be a long set to
-      the desired seed, a number between 1 and 2147483646 (inclusive). 
+      the desired seed, a number between 1 and 2147483646 (inclusive).
       Default seeds for all 100 streams are given in the code.
 
    3. To get the current (most recently used) integer in the sequence
