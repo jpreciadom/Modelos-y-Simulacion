@@ -1,24 +1,24 @@
-Listo N° 1: Fila de los barcos en el puerto
-Listo N° 2: Barcos que pasaron por la grua A
-Listo N° 3: Barcos que pasaron por la grua B
-Listo N° 4: Barcos que ingresaron al sistema
+Lista N° 1: Fila de los barcos en el puerto
+Lista N° 2: Barcos que pasaron por la grua A
+Lista N° 3: Barcos que pasaron por la grua B
+Lista N° 4: Barcos que ingresaron al sistema
 
  sampst                         Number
 variable                          of
  number       Average           values          Maximum          Minimum
 ________________________________________________________________________
 
-    1         105.455          74.0000          1889.45          0.00000 
+    1         105.824          74.0000          1891.27          0.00000 
 
-    2         915.600          65.0000          2069.00          367.000 
+    2         916.804          65.0000          2069.41          366.496 
 
-    3         887.146          48.0000          2102.00          367.000 
+    3         887.397          48.0000          2101.85          366.496 
 
-    4         1100.12          73.0000          3457.00          367.000 
+    4         1101.46          73.0000          3457.26          366.496 
 ________________________________________________________________________
 
 
 El maximo numero de barcos que esperaron el la cola fue 2
 
-Time simulation ended:  131965.891 minutes
+Time simulation ended:  131965.891 minutos
 

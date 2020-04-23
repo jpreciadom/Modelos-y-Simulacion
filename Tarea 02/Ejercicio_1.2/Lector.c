@@ -77,6 +77,7 @@ float NextFloat(){
         }
     }
 
+    free(string);
     return number;
 }
 
@@ -111,6 +112,7 @@ double NextDouble(){
         }
     }
 
+    free(string);
     return number;
 }
 

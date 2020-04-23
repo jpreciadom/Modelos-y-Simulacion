@@ -17,9 +17,9 @@
 #define STREAM_LLEGADA          1
 
 struct BarcoEnDescarga {
-    long TiempoDeLlegadaAlPuerto;
-    long TiempoDeEntradaALaGrua;
-    long TiempoDeFinalizacion;
+    float TiempoDeLlegadaAlPuerto;
+    float TiempoDeEntradaALaGrua;
+    float TiempoDeFinalizacion;
 };
 
 struct Grua {
@@ -219,9 +219,9 @@ void report(){
                                 "Barcos que pasaron por la grua B",
                                 "Barcos que ingresaron al sistema"};
     for(int i = 0; i<4; i++){
-        fprintf(outFile, "Listo N° %i: %s\n", i+1, descripciones[i]);
+        fprintf(outFile, "Lista N° %i: %s\n", i+1, descripciones[i]);
     }
     out_sampst(outFile, SAMPST_COLA, SAMPST_BARCOS);
     fprintf(outFile, "El maximo numero de barcos que esperaron el la cola fue %i\n", maxSize);
-    fprintf(outFile, "\nTime simulation ended:%12.3f minutes\n\n", sim_time);
+    fprintf(outFile, "\nTime simulation ended:%12.3f minutos\n\n", sim_time);
 }
