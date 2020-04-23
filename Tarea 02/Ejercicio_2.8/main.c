@@ -10,12 +10,16 @@
 #define COLA                    1
 //Estadisticos
 #define SAMPST_COLA             1
+#define SAMPST_GRUAA            2
+#define SAMPST_GRUAB            3
+#define SAMPST_BARCOS           4
 //Streams
 #define STREAM_LLEGADA          1
 
 struct BarcoEnDescarga {
-    long TiempoDeEntradaALaGrua;
-    long TiempoDeFinalizacion;
+    float TiempoDeLlegadaAlPuerto;
+    float TiempoDeEntradaALaGrua;
+    float TiempoDeFinalizacion;
 };
 
 struct Grua {
@@ -23,6 +27,7 @@ struct Grua {
     struct BarcoEnDescarga *Descargando;
 };
 
+int maxSize;
 long SegundosSimulacion;
 
 double Expo_Llegada;
@@ -36,6 +41,7 @@ void init_Model();
 void AgregarACola();
 void PasarALasGruas();
 void TerminarDescarga();
+void report();
 
 int main() {
     inFile = fopen("Ejercicio_2.8.in", "r");
@@ -64,6 +70,7 @@ int main() {
                 break;
         }
     }
+    report();
 
     return 0;
 }
@@ -71,12 +78,14 @@ int main() {
 void init_Model(){
     file = inFile;
     delimiter = ',';
-    long Segundos_Dia = 3600 * 24;
-    Expo_Llegada = 1.25 * Segundos_Dia;
-    Tiempo_Descarga[0] = 0.5 * Segundos_Dia;
-    Tiempo_Descarga[1] = 1.5 * Segundos_Dia;
 
-    SegundosSimulacion = NextLong() * Segundos_Dia;
+    long Minutos_Dia = 60 * 24;
+    Expo_Llegada = 1.25 * Minutos_Dia;
+    Tiempo_Descarga[0] = 0.5 * Minutos_Dia;
+    Tiempo_Descarga[1] = 1.5 * Minutos_Dia;
+
+    SegundosSimulacion = NextLong() * Minutos_Dia;
+    maxSize = -1;
 
     for(int i = 0; i<2; i++){
         Gruas[i].Descargando = NULL;
@@ -87,14 +96,19 @@ void init_Model(){
 }
 
 void AgregarACola(){
+    transfer[1] = sim_time;
     list_file(LAST, COLA);
 
-    if(Gruas[0].Descargando != Gruas[1].Descargando)
+    if(Gruas[0].Descargando != Gruas[1].Descargando){
         transfer[1] = sim_time;
-    else
+    } else {
         PasarALasGruas();
+    }
 
-    //Planifico la siguiente llegada
+    if(list_size[COLA] > maxSize){
+        maxSize = list_size[COLA];
+    }
+    event_schedule(sim_time + expon(Expo_Llegada, STREAM_LLEGADA), LLEGADA_DE_UN_BARCO);
 }
 
 void PasarALasGruas(){
@@ -123,6 +137,8 @@ void PasarALasGruas(){
             event_schedule(reg->TiempoDeFinalizacion, FIN_DE_DESCARGA);
         }
     } else {
+        int n = 0;
+        struct BarcoEnDescarga *barcoNuevo = NULL;
         if(GruasLibres == 0){//Ninguna esta libre pero tal vez estan trabajando en el mismo
             if (Gruas[0].Descargando == Gruas[1].Descargando) {//Estan trabajando en el mismo
                 event_cancel(FIN_DE_DESCARGA);
@@ -132,32 +148,46 @@ void PasarALasGruas(){
                 event_schedule(reg->TiempoDeFinalizacion, FIN_DE_DESCARGA);
 
                 reg = malloc(sizeof(struct BarcoEnDescarga));
+                barcoNuevo = reg;
                 reg->TiempoDeEntradaALaGrua = sim_time;
                 reg->TiempoDeFinalizacion = sim_time + uniform(Tiempo_Descarga[0], Tiempo_Descarga[1], STREAM_LLEGADA);
                 Gruas[1].Descargando = reg;
                 event_schedule(reg->TiempoDeFinalizacion, FIN_DE_DESCARGA);
+                n = 1;
             }
         } else if(GruasLibres == 1){//la grua 0 esta libre
             struct BarcoEnDescarga *nuevo = malloc(sizeof(struct BarcoEnDescarga));
+            barcoNuevo = nuevo;
             nuevo->TiempoDeEntradaALaGrua = sim_time;
             nuevo->TiempoDeFinalizacion = sim_time + uniform(Tiempo_Descarga[0], Tiempo_Descarga[1], STREAM_LLEGADA);
             Gruas[0].Descargando = nuevo;
 
             event_schedule(nuevo->TiempoDeFinalizacion, FIN_DE_DESCARGA);
+            n = 1;
         } else if(GruasLibres == 2){//la grua 1 esta libre
             struct BarcoEnDescarga *nuevo = malloc(sizeof(struct BarcoEnDescarga));
+            barcoNuevo = nuevo;
             nuevo->TiempoDeEntradaALaGrua = sim_time;
             nuevo->TiempoDeFinalizacion = sim_time + uniform(Tiempo_Descarga[0], Tiempo_Descarga[1], STREAM_LLEGADA);
             Gruas[1].Descargando = nuevo;
 
             event_schedule(nuevo->TiempoDeFinalizacion, FIN_DE_DESCARGA);
+            n = 1;
         } else {//Ambas libres
             struct BarcoEnDescarga *nuevo = malloc(sizeof(struct BarcoEnDescarga));
+            barcoNuevo = nuevo;
             nuevo->TiempoDeEntradaALaGrua = sim_time;
             nuevo->TiempoDeFinalizacion = sim_time + (uniform(Tiempo_Descarga[0], Tiempo_Descarga[1], STREAM_LLEGADA)/2);
             Gruas[0].Descargando = Gruas[1].Descargando = nuevo;
 
             event_schedule(nuevo->TiempoDeFinalizacion, FIN_DE_DESCARGA);
+            n = 1;
+        }
+
+        if (n == 1){
+            list_remove(FIRST, COLA);
+            barcoNuevo->TiempoDeLlegadaAlPuerto = transfer[1];
+            sampst(sim_time-transfer[1], SAMPST_COLA);
         }
     }
 }
@@ -166,14 +196,32 @@ void TerminarDescarga(){
     struct BarcoEnDescarga *reg = Gruas[0].Descargando;
 
     if(Gruas[0].Descargando == Gruas[1].Descargando && Gruas[0].Descargando != NULL){
+        sampst(sim_time - Gruas[0].Descargando->TiempoDeEntradaALaGrua, SAMPST_GRUAA);
+        sampst(sim_time - Gruas[1].Descargando->TiempoDeEntradaALaGrua, SAMPST_GRUAB);
         Gruas[0].Descargando = Gruas[1].Descargando = NULL;
     }else if(reg != NULL && reg->TiempoDeFinalizacion == sim_time){
+        sampst(sim_time - Gruas[0].Descargando->TiempoDeEntradaALaGrua, SAMPST_GRUAA);
         Gruas[0].Descargando = NULL;
     } else {
+        sampst(sim_time - Gruas[1].Descargando->TiempoDeEntradaALaGrua, SAMPST_GRUAB);
         reg = Gruas[1].Descargando;
         Gruas[1].Descargando = NULL;
     }
 
+    sampst(sim_time - reg->TiempoDeLlegadaAlPuerto, SAMPST_BARCOS);
     free(reg);
     PasarALasGruas();
+}
+
+void report(){
+    char * descripciones[5] = { "Fila de los barcos en el puerto",
+                                "Barcos que pasaron por la grua A",
+                                "Barcos que pasaron por la grua B",
+                                "Barcos que ingresaron al sistema"};
+    for(int i = 0; i<4; i++){
+        fprintf(outFile, "Lista N° %i: %s\n", i+1, descripciones[i]);
+    }
+    out_sampst(outFile, SAMPST_COLA, SAMPST_BARCOS);
+    fprintf(outFile, "El maximo numero de barcos que esperaron el la cola fue %i\n", maxSize);
+    fprintf(outFile, "\nTime simulation ended:%12.3f minutos\n\n", sim_time);
 }

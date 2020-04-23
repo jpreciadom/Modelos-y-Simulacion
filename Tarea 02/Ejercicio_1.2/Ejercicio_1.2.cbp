@@ -31,6 +31,18 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="ChainNode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ChainNode.h" />
+		<Unit filename="Lector.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Lector.h" />
+		<Unit filename="LinkedList.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="LinkedList.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
