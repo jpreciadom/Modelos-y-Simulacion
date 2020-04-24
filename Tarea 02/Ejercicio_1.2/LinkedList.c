@@ -83,7 +83,7 @@ short AddLast(struct LinkedList *List, void *Element){
 }
 
 void * Get(struct LinkedList *List, int index){
-    if(index > List->Size)
+    if(index >= List->Size)
         return NULL;
 
     struct ChainNode *toGet = List->First;
@@ -98,10 +98,10 @@ void * GetLast(struct LinkedList *List){
 }
 
 void Remove(struct LinkedList *List, int index){
-    if(index == List->Size){
-        RemoveLast(List);
-    } else if(index == 0){
+    if(index == 0){
         RemoveFirst(List);
+    } else if(index == List->Size-1){
+        RemoveLast(List);
     } else if(index < List->Size && index > 0){
         struct ChainNode *node = List->First;
         for(int i = 1; i<index; i++){
@@ -110,6 +110,7 @@ void Remove(struct LinkedList *List, int index){
         struct ChainNode *toDelete = node->Next;
         node->Next = toDelete->Next;
         FreeChainNode(toDelete);
+        List->Size--;
     }
 }
 

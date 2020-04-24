@@ -11,7 +11,7 @@
 #define FIN_DEL_SERVICIO                        3
 //Estadisticos
 #define ESPERA_EN_LA_COLA                       1
-#define ESPERA_EN_EL_SERVIDOR                   2
+#define USO_DEL_SERVIDOR                        2
 #define ESPERA_EN_EL_SISTEMA                    3
 #define ESPERA_DE_CLIENTES_QUE_RENUNCIAN        4
 //Streams
@@ -20,6 +20,7 @@
 struct Cliente {
     float TiempoDeLlegada;
     float LimiteDeEspera;
+    float TiempoEnQueIngresoAlServidor;
 };
 
 int MinutosDeSimulacion;
@@ -45,8 +46,8 @@ void PasarAlServidor();
 void FinDelServicio();
 void report();
 
-int poisson(float media);
-int TRIA(int a, int b, int c);
+int poisson(float lambda);
+int TRIA(int a, int c, int b);
 
 int main() {
     srand(STREAM*71523);
@@ -125,9 +126,9 @@ void LlegaUnCliente(){
         } while (nuevoCliente == NULL);
         nuevoCliente->TiempoDeLlegada = sim_time;
         nuevoCliente->LimiteDeEspera = sim_time + erlang(2, TiempoDeEspera, STREAM);
+        nuevoCliente->TiempoEnQueIngresoAlServidor = -1;
         AddLast(queue, nuevoCliente);
         event_schedule(nuevoCliente->LimiteDeEspera, CUMPLIMIENTO_DE_TIEMPO_DE_ESPERA);
-        printf("Entra un cliente\n");
 
         PasarAlServidor();
     } else {
@@ -160,11 +161,32 @@ void CumplimientoDeTiempoDeEspera(){
 }
 
 void PasarAlServidor(){
+    if(queue->Size > 0 && clienteSiendoAtendido == NULL){
+        clienteSiendoAtendido = Get(queue, 0);
+        clienteSiendoAtendido->TiempoEnQueIngresoAlServidor = sim_time;
+        float horaDeLlegada = clienteSiendoAtendido -> TiempoDeLlegada;
+        Remove(queue, 0);
 
+        sampst(sim_time - horaDeLlegada, ESPERA_EN_LA_COLA);
+        float a = sim_time + expon(ExpoServicio, STREAM);
+
+        printf("Banerita disreta %f - %f\n", a, sim_time);
+        event_schedule(a, FIN_DEL_SERVICIO);
+        printf("Banerita disreta\n\n");
+    }
+
+    if((long)queue->Size > MaximaCantidadDeClientesEsprando){
+        MaximaCantidadDeClientesEsprando = queue->Size;
+    }
 }
 
 void FinDelServicio(){
+    sampst(sim_time - clienteSiendoAtendido->TiempoEnQueIngresoAlServidor, USO_DEL_SERVIDOR);
+    sampst(sim_time - clienteSiendoAtendido->TiempoDeLlegada, ESPERA_EN_EL_SISTEMA);
 
+    free(clienteSiendoAtendido);
+    clienteSiendoAtendido = NULL;
+    PasarAlServidor();
 }
 
 void report(){
@@ -176,13 +198,42 @@ void report(){
         fprintf(outFile, "Lista N° %i: %s\n", i+1, descripciones[i]);
     }
     out_sampst(outFile, ESPERA_EN_LA_COLA, ESPERA_DE_CLIENTES_QUE_RENUNCIAN);
+    fprintf(outFile, "%li no entraron a la fila\n", ClientesQueNoEntraron);
+    fprintf(outFile, "La fila alcanzó un maximo de %li clientes\n", MaximaCantidadDeClientesEsprando);
+    fprintf(outFile, "Al finalizar la simulación habia %i personas en la fila\n", queue->Size);
     fprintf(outFile, "\nTime simulation ended:%12.3f minutos\n\n", sim_time);
 }
 
-int poisson(float media){
-    return 0;
+int poisson(float lambda){
+    float U = uniform(0, 1, STREAM);
+    int i = 0;
+    float p = exp(-lambda);
+    float P = p;
+    while(U >= P){
+        i++;
+        p = lambda * p / i;
+        P += p;
+    }
+    return i;
 }
 
-int TRIA(int a, int b, int c){
-    return b + (a/c) - (c/a);
+int TRIA(int a, int c, int b){
+    float U = uniform(0, 1, STREAM);
+    float reg = (float)((float)(c - a) / (float)(b - a));
+    if(U < reg){
+        U *= (b - a) * (c - a);
+        U += pow(a, 2);
+        U = sqrt(U);
+        return (int)(U + a);
+    } else if(U == reg){
+        return c;
+    } else {
+        U = U - reg ;
+        U *= (b - a) * (b - c) * -1;
+        U += pow(c,2);
+        U -= (2 * c * b);
+        U += pow(b, 2);
+        U = -sqrt(U);
+        return U + b;
+    }
 }
