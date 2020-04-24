@@ -70,7 +70,7 @@ short Add(struct LinkedList *List, void *Element, int index) {
 short AddLast(struct LinkedList *List, void *Element){
     struct ChainNode *node = initChainNode(Element);
     if(node == NULL)
-        return NULL;
+        return -1;
 
     if(List->Size == 0){
         List->First = node;

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1587687651 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 02\ejercicio_1.2\main.c
+1587689958 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 02\ejercicio_1.2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
@@ -37,7 +37,7 @@
 	<stdlib.h>
 	<stdio.h>
 
-1587686606 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 02\ejercicio_1.2\linkedlist.c
+1587689709 source:c:\users\juan diego\desktop\general\trabajos\modelos y simulacion\modelos-y-simulacion\tarea 02\ejercicio_1.2\linkedlist.c
 	"LinkedList.h"
 	<stdlib.h>
 

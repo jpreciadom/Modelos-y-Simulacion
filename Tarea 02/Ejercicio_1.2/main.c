@@ -33,7 +33,7 @@ float PoissZonaPermanencia;
 
 FILE *inFile, *outFile;
 
-struct Cliente *clienteSiendoAtendido;
+struct Cliente clienteSiendoAtendido;
 struct LinkedList * queue;
 long MaximaCantidadDeClientesEsprando;
 long ClientesQueNoEntraron;
@@ -108,7 +108,7 @@ void inicializarVariablesDeEntrada(){
 }
 
 void inicializarModelo(){
-    clienteSiendoAtendido = NULL;
+    clienteSiendoAtendido.TiempoDeLlegada = -1;
     MaximaCantidadDeClientesEsprando = -1;
     MakeEmpty(queue);
     ClientesQueNoEntraron = 0;
@@ -161,18 +161,18 @@ void CumplimientoDeTiempoDeEspera(){
 }
 
 void PasarAlServidor(){
-    if(queue->Size > 0 && clienteSiendoAtendido == NULL){
-        clienteSiendoAtendido = Get(queue, 0);
-        clienteSiendoAtendido->TiempoEnQueIngresoAlServidor = sim_time;
-        float horaDeLlegada = clienteSiendoAtendido -> TiempoDeLlegada;
+    if(queue->Size > 0 && clienteSiendoAtendido.TiempoDeLlegada < 0){
+        struct Cliente *reg = Get(queue, 0);
+        clienteSiendoAtendido.TiempoDeLlegada = reg->TiempoDeLlegada;
+        clienteSiendoAtendido.LimiteDeEspera = reg->LimiteDeEspera;
+        clienteSiendoAtendido.TiempoEnQueIngresoAlServidor = sim_time;
         Remove(queue, 0);
 
-        sampst(sim_time - horaDeLlegada, ESPERA_EN_LA_COLA);
+        float horaDeLlegada = clienteSiendoAtendido.TiempoDeLlegada;
         float a = sim_time + expon(ExpoServicio, STREAM);
 
-        printf("Banerita disreta %f - %f\n", a, sim_time);
+        sampst(sim_time - horaDeLlegada, ESPERA_EN_LA_COLA);
         event_schedule(a, FIN_DEL_SERVICIO);
-        printf("Banerita disreta\n\n");
     }
 
     if((long)queue->Size > MaximaCantidadDeClientesEsprando){
@@ -181,11 +181,10 @@ void PasarAlServidor(){
 }
 
 void FinDelServicio(){
-    sampst(sim_time - clienteSiendoAtendido->TiempoEnQueIngresoAlServidor, USO_DEL_SERVIDOR);
-    sampst(sim_time - clienteSiendoAtendido->TiempoDeLlegada, ESPERA_EN_EL_SISTEMA);
+    sampst(sim_time - clienteSiendoAtendido.TiempoEnQueIngresoAlServidor, USO_DEL_SERVIDOR);
+    sampst(sim_time - clienteSiendoAtendido.TiempoDeLlegada, ESPERA_EN_EL_SISTEMA);
 
-    free(clienteSiendoAtendido);
-    clienteSiendoAtendido = NULL;
+    clienteSiendoAtendido.TiempoDeLlegada = -1;
     PasarAlServidor();
 }
 

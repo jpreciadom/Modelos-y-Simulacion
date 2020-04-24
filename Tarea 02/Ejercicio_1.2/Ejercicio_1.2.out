@@ -1,0 +1,130 @@
+Lista N° 1: Espera en la cola
+Lista N° 2: Espera en el servidor
+Lista N° 3: Espera en el sistema
+Lista N° 4: Espera de clientes que renunciaron
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         5.62666          358.000          36.4092          0.00000 
+
+    2         3.99651          358.000          35.7222       0.00857544 
+
+    3         9.62317          358.000          37.6259        0.0229492 
+
+    4         6.68103          58.0000          21.3054         0.969849 
+________________________________________________________________________
+
+
+1 no entraron a la fila
+La fila alcanzó un maximo de 9 clientes
+Al finalizar la simulación habia 0 personas en la fila
+
+Time simulation ended:    2001.215 minutos
+
+Lista N° 1: Espera en la cola
+Lista N° 2: Espera en el servidor
+Lista N° 3: Espera en el sistema
+Lista N° 4: Espera de clientes que renunciaron
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         8.78688          336.000          37.1480          0.00000 
+
+    2         5.01271          335.000          26.0812       0.00572205 
+
+    3         13.8183          335.000          44.6738        0.0243835 
+
+    4         7.31984          77.0000          24.1876         0.381836 
+________________________________________________________________________
+
+
+2 no entraron a la fila
+La fila alcanzó un maximo de 9 clientes
+Al finalizar la simulación habia 1 personas en la fila
+
+Time simulation ended:    2000.257 minutos
+
+Lista N° 1: Espera en la cola
+Lista N° 2: Espera en el servidor
+Lista N° 3: Espera en el sistema
+Lista N° 4: Espera de clientes que renunciaron
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         6.01896          386.000          30.5127          0.00000 
+
+    2         3.95065          385.000          23.1617       0.00769043 
+
+    3         9.98526          385.000          42.9329       0.00817871 
+
+    4         6.79845          38.0000          24.5422         0.529510 
+________________________________________________________________________
+
+
+0 no entraron a la fila
+La fila alcanzó un maximo de 9 clientes
+Al finalizar la simulación habia 0 personas en la fila
+
+Time simulation ended:    2000.295 minutos
+
+Lista N° 1: Espera en la cola
+Lista N° 2: Espera en el servidor
+Lista N° 3: Espera en el sistema
+Lista N° 4: Espera de clientes que renunciaron
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         6.12299          363.000          39.0980          0.00000 
+
+    2         4.17051          362.000          29.2156      0.000183105 
+
+    3         10.2820          362.000          43.8089        0.0463943 
+
+    4         5.23635          42.0000          12.2203         0.221191 
+________________________________________________________________________
+
+
+1 no entraron a la fila
+La fila alcanzó un maximo de 8 clientes
+Al finalizar la simulación habia 1 personas en la fila
+
+Time simulation ended:    2003.220 minutos
+
+Lista N° 1: Espera en la cola
+Lista N° 2: Espera en el servidor
+Lista N° 3: Espera en el sistema
+Lista N° 4: Espera de clientes que renunciaron
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         7.04517          361.000          40.5078          0.00000 
+
+    2         4.51433          361.000          32.1445        0.0184021 
+
+    3         11.5595          361.000          44.0331        0.0223389 
+
+    4         7.53370          55.0000          18.1440         0.833923 
+________________________________________________________________________
+
+
+0 no entraron a la fila
+La fila alcanzó un maximo de 8 clientes
+Al finalizar la simulación habia 0 personas en la fila
+
+Time simulation ended:    2005.984 minutos
+
