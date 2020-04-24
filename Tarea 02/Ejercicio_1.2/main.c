@@ -5,6 +5,8 @@
 #include "Lector.h"
 #include "LinkedList.h"
 
+//Lista
+#define LQNENPSNLPNTUDYPLM                      1
 //Eventos
 #define LLEGADA_DE_UNA_PERSONA                  1
 #define CUMPLIMIENTO_DE_TIEMPO_DE_ESPERA        2
@@ -124,11 +126,12 @@ void LlegaUnCliente(){
         do{
             nuevoCliente = malloc(sizeof(struct Cliente));
         } while (nuevoCliente == NULL);
-        nuevoCliente->TiempoDeLlegada = sim_time;
+        nuevoCliente->TiempoDeLlegada = transfer[1] = sim_time;
         nuevoCliente->LimiteDeEspera = sim_time + erlang(2, TiempoDeEspera, STREAM);
         nuevoCliente->TiempoEnQueIngresoAlServidor = -1;
         AddLast(queue, nuevoCliente);
         event_schedule(nuevoCliente->LimiteDeEspera, CUMPLIMIENTO_DE_TIEMPO_DE_ESPERA);
+        list_file(LAST, LQNENPSNLPNTUDYPLM);
 
         PasarAlServidor();
     } else {
@@ -157,6 +160,7 @@ void CumplimientoDeTiempoDeEspera(){
     if(Pos > poiss){
         Remove(queue, Pos);
         sampst(TiempoEsperado, ESPERA_DE_CLIENTES_QUE_RENUNCIAN);
+        list_remove(FIRST, LQNENPSNLPNTUDYPLM);
     }
 }
 
@@ -183,6 +187,7 @@ void PasarAlServidor(){
 void FinDelServicio(){
     sampst(sim_time - clienteSiendoAtendido.TiempoEnQueIngresoAlServidor, USO_DEL_SERVIDOR);
     sampst(sim_time - clienteSiendoAtendido.TiempoDeLlegada, ESPERA_EN_EL_SISTEMA);
+    list_remove(FIRST, LQNENPSNLPNTUDYPLM);
 
     clienteSiendoAtendido.TiempoDeLlegada = -1;
     PasarAlServidor();
@@ -197,6 +202,7 @@ void report(){
         fprintf(outFile, "Lista N° %i: %s\n", i+1, descripciones[i]);
     }
     out_sampst(outFile, ESPERA_EN_LA_COLA, ESPERA_DE_CLIENTES_QUE_RENUNCIAN);
+    out_filest(outFile, LQNENPSNLPNTUDYPLM, LQNENPSNLPNTUDYPLM);
     fprintf(outFile, "%li no entraron a la fila\n", ClientesQueNoEntraron);
     fprintf(outFile, "La fila alcanzó un maximo de %li clientes\n", MaximaCantidadDeClientesEsprando);
     fprintf(outFile, "Al finalizar la simulación habia %i personas en la fila\n", queue->Size);
