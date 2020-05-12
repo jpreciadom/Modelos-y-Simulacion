@@ -1,18 +1,18 @@
 # depslib dependency file v1.0
-1587573885 source:c:\users\juan pablo\desktop\modelos y simulacion\modelos-y-simulacion\tarea 02\ejercicio_2.6\simlib.c
+1587577485 source:c:\users\juan pablo\desktop\modelos y simulacion\modelos-y-simulacion\tarea 02\ejercicio_2.6\simlib.c
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
 	"simlibdefs.h"
 
-905535830 c:\users\juan pablo\desktop\modelos y simulacion\modelos-y-simulacion\tarea 02\ejercicio_2.6\simlibdefs.h
+905539430 c:\users\juan pablo\desktop\modelos y simulacion\modelos-y-simulacion\tarea 02\ejercicio_2.6\simlibdefs.h
 
-1587685539 source:c:\users\juan pablo\desktop\modelos y simulacion\modelos-y-simulacion\tarea 02\ejercicio_2.6\main.c
+1588530028 source:c:\users\juan pablo\desktop\modelos y simulacion\modelos-y-simulacion\tarea 02\ejercicio_2.6\main.c
 	<stdio.h>
 	<stdlib.h>
 	"simlib.h"
 
-905733076 c:\users\juan pablo\desktop\modelos y simulacion\modelos-y-simulacion\tarea 02\ejercicio_2.6\simlib.h
+905736676 c:\users\juan pablo\desktop\modelos y simulacion\modelos-y-simulacion\tarea 02\ejercicio_2.6\simlib.h
 	<stdio.h>
 	<stdlib.h>
 	<math.h>

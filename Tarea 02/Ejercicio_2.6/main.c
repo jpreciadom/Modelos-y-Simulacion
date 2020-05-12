@@ -85,7 +85,7 @@ void init_model(void)  /* Initialization function. */
     mean_service_2 = 1.25;
     mean_service_3 = 2;
     mean_service_4 = 3;
-    tipo_fila = 0;    //cero es unaf ila y uno es 6 filas
+    tipo_fila = 1;    //cero es unaf ila y uno es 6 filas
     fila = 0;
     num_p = 0;
     for(int i=1; i<=6; i++){
@@ -196,18 +196,22 @@ void customer_enters_ATM(void){
 
 
     categoria_transaccion = (rand() % 100)+1;
+    printf("categoria %i \n", categoria_transaccion);
+    float pru;
     if(categoria_transaccion>=1 && categoria_transaccion<=15){
             transfer[4] = f;
             event_schedule(sim_time+expon(mean_service_1, STREAM_SERVICE),EVENT_EXIT_ATM);
             //printf("categoria transa 111111111111111111111111111111 \n");
     }else if(categoria_transaccion>15 && categoria_transaccion<=44){
             transfer[4] = f;
-            event_schedule(sim_time+expon(mean_service_2, STREAM_SERVICE),EVENT_EXIT_ATM);
-            //printf("categoria transa 222222222222222222222222222222 \n");
+            pru = expon(mean_service_2, STREAM_SERVICE);
+            event_schedule(sim_time+pru,EVENT_EXIT_ATM);
+            printf("categoria transa 222222222222222222222222222222 %f \n", pru);
     }else if(categoria_transaccion>44 && categoria_transaccion<=76){
             transfer[4] = f;
-            event_schedule(sim_time+expon(mean_service_3, STREAM_SERVICE),EVENT_EXIT_ATM);
-            //printf("categoria transa 333333333333333333333333333333 \n");
+            pru = expon(mean_service_3, STREAM_SERVICE);
+            event_schedule(sim_time+pru,EVENT_EXIT_ATM);
+            printf("categoria transa 333333333333333333333333333333 %f \n",pru);
     }else if(categoria_transaccion>76 && categoria_transaccion<=100){
             transfer[4] = f;
             event_schedule(sim_time+expon(mean_service_4, STREAM_SERVICE),EVENT_EXIT_ATM);

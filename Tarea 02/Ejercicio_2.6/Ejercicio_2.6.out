@@ -1,15 +1,28 @@
 
-Delays in queue 1, in minutes:
+Delays in queues, in minutes:
 
  sampst                         Number
 variable                          of
  number       Average           values          Maximum          Minimum
 ________________________________________________________________________
 
-    1         3.94932          1449.00          20.3092         0.000000 
+    1         6.54296          230.000          36.7894         0.000000 
+
+    2         5.47590          252.000          26.7802         0.000000 
+
+    3         5.46353          247.000          31.3567         0.000000 
+
+    4         5.83566          224.000          34.5185         0.000000 
+
+    5         4.38080          270.000          21.0949         0.000000 
+
+    6         5.01154          227.000          27.6097         0.000000 
 ________________________________________________________________________
 
 
 
-Time simulation ended:     480.272 minutes
+ el promedio de espera en las colas es: 5.451734
+
+
+Time simulation ended:     480.304 minutes
 
