@@ -12,7 +12,7 @@ to setup
     let next-elevation file-read
     ask patch next-X next-Y [
       set elevation next-elevation
-      set pcolor scale-color green nelevation 0 100
+      set pcolor scale-color green elevation 400 650
       set used? false
     ]
   ]
@@ -20,8 +20,8 @@ to setup
 
   crt 50[
     set size 2
-    setxy 85 95
-    ;pen-down
+    setxy random-pxcor mod 10 + 100 random-pycor mod 10 + 130
+    pen-down
     set start-patch patch-here
   ]
   reset-ticks
@@ -40,8 +40,8 @@ to go
 end
 
 to move
-  if elevation >= [elevation] of max-one-of neighbors [elevation]
-  [stop]
+  ;if elevation >= [elevation] of max-one-of neighbors [elevation]
+  ;[stop]
 
   ifelse random-float 1 < q
 
@@ -57,13 +57,13 @@ to-report corridor-width
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
-10
-668
-469
+224
+21
+1017
+815
 -1
 -1
-3.0
+5.233333333333334
 1
 10
 1
@@ -126,17 +126,17 @@ q
 q
 0
 1
-0.4
+0.5
 0.01
 1
 NIL
 HORIZONTAL
 
 PLOT
-702
-16
-1074
-274
+1334
+10
+1706
+268
 Corridor width
 Ticks
 corridor-width

@@ -12,7 +12,7 @@ to setup
     let next-elevation file-read
     ask patch next-X next-Y [
       set elevation next-elevation
-      set pcolor scale-color green elevation 0 1000
+      set pcolor scale-color green elevation 400 650
       set used? false
     ]
   ]
