@@ -23,13 +23,7 @@ to setup
     set start-patch patch-here
   ]
   reset-ticks
-  ;set q 0.2  ;inicializamos la varible gloabl
-end
-
-to-report corridor-width
-  let number count patches with [used? = true]
-  let media distance patch-here
-  report 2
+  ;set q 0.2  ;inicializamos la varible global
 end
 
 to go
@@ -37,8 +31,8 @@ to go
   tick
   if ticks >= 1000
   [
-    let final-corridor-width 0
-    set final-corridor-width corridor-width
+    let final-corridor-width corridor-width
+    write "Corridor width: " print final-corridor-width
     stop
   ]
 end
@@ -52,6 +46,12 @@ to move
   [ uphill elevation ]
   [ move-to one-of neighbors]
   set used? true
+end
+
+to-report corridor-width
+  let number count patches with [used? = true]
+  let media mean [distance start-patch] of turtles
+  report number / media
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -124,7 +124,7 @@ q
 q
 0
 1
-0.5
+0.4
 0.01
 1
 NIL
