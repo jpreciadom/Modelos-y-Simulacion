@@ -14,7 +14,7 @@ to setup
 
     set pcolor scale-color green elevation 0 100
   ]
-  crt 500[
+  crt 50[
     set size 2
     setxy 85 95
     pen-down
