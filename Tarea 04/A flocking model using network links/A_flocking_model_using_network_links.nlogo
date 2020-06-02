@@ -18,8 +18,8 @@ to setup
   ;; setup: create the turtles and set simulation time to 0
   clear-all
   crt population
-    [ 
-      setxy random-xcor random-ycor 
+    [
+      setxy random-xcor random-ycor
 ;      find-negativ-neighbors  ;; find the turtles that are too close from me
 ;      find-positiv-neighbors  ;; find the turtles that are not too close and not too far
 ;      link-negativ-neighbors  ;; create links between neighbors and add weight
@@ -35,16 +35,16 @@ to go
 
   ;; compute the new direction
   ask turtles [ flock ]
-  
-  
-  if not showlink [ask links [ hide-link ]]
-  
 
-  
+
+  if not showlink [ask links [ hide-link ]]
+
+
+
   ;; move
   ask turtles [ fd 1 ]
   ;; increase simulation time
-  
+
   tick
 end
 
@@ -53,7 +53,7 @@ to flock
   find-positiv-neighbors  ;; find the turtles that are not too close and not too far
   link-negativ-neighbors  ;; create links between neighbors and add weight
   link-positiv-neighbors  ;; create links between neighbors and add weight
-  
+
   ifelse showlabel
   [
     set label word count positiv-neighbors ","
@@ -74,7 +74,7 @@ to flock
     set avg-head-neg mean [[heading] of self] of negativ-neighbors
   ]
   set heading heading + coupling-strength * ( coherence-strength * (avg-head-pos - heading) + separation-strength * ( 180 + avg-head-neg - heading ) + alignment-strength *  ( (0.5 * (avg-head-neg + avg-head-pos)) - heading))
-  
+
 end
 
 to find-negativ-neighbors
@@ -122,10 +122,10 @@ end
 GRAPHICS-WINDOW
 245
 10
-660
-446
-40
-40
+658
+424
+-1
+-1
 5.0
 1
 10
@@ -189,7 +189,7 @@ population
 population
 1.0
 1000.0
-200
+448.0
 1.0
 1
 NIL
@@ -204,7 +204,7 @@ maximum-separation
 maximum-separation
 0.0
 10
-3
+3.0
 0.25
 1
 patches
@@ -234,7 +234,7 @@ alignment-strength
 alignment-strength
 0
 1
-0
+0.0
 0.01
 1
 NIL
@@ -726,9 +726,8 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
-
 @#$#@#$#@
-NetLogo 5.0.4
+NetLogo 6.1.1
 @#$#@#$#@
 set population 200
 setup
@@ -739,15 +738,14 @@ repeat 200 [ go ]
 @#$#@#$#@
 default
 0.0
--0.2 0 1.0 0.0
+-0.2 0 0.0 1.0
 0.0 1 1.0 0.0
-0.2 0 1.0 0.0
+0.2 0 0.0 1.0
 link direction
 true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
-
 @#$#@#$#@
 1
 @#$#@#$#@
