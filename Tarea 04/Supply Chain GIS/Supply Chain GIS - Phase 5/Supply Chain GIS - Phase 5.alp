@@ -112,7 +112,7 @@
 			<Variables>
 				<Variable Class="PlainVariable">
 					<Id>1591128814582</Id>
-					<Name><![CDATA[totalOrdenes]]></Name>
+					<Name><![CDATA[envios]]></Name>
 					<X>-150</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -127,7 +127,7 @@
 				</Variable>
 				<Variable Class="PlainVariable">
 					<Id>1591130998676</Id>
-					<Name><![CDATA[ordenesPorDia]]></Name>
+					<Name><![CDATA[enviosPorDia]]></Name>
 					<X>-150</X><Y>250</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -135,6 +135,21 @@
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[static double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1591132412666</Id>
+					<Name><![CDATA[pedidos]]></Name>
+					<X>-150</X><Y>300</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[static int]]></Type>        
 						<InitialValue Class="CodeValue">
 							<Code><![CDATA[0]]></Code>
 						</InitialValue>
@@ -1057,7 +1072,8 @@
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[Order order = new Order(uniform_discr(10,20), this);
+					<Action><![CDATA[Main.pedidos++;
+Order order = new Order(uniform_discr(10,20), this);
 Vehicle truck = getNearestAgent(filter(main.vehicles,
               v -> v.inState(Vehicle.AtDistributor)));
 if (truck != null)
@@ -1549,8 +1565,8 @@ if (truck != null)
 					<IconOffset>20.0</IconOffset>
 					<Properties Source="1506505976013" Target="1506506542095" Trigger="message">
 						<Action><![CDATA[moveTo(msg.retailer);
-Main.totalOrdenes++;
-Main.ordenesPorDia = (Main.totalOrdenes * 24) / time();
+Main.envios++;
+Main.enviosPorDia = (Main.envios * 24) / time();
 order = msg;]]></Action>
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
