@@ -110,6 +110,36 @@
 			<CurrentLevel>1593293421115</CurrentLevel>
 			<ConnectionsId>1593293421111</ConnectionsId>
 			<Variables>
+				<Variable Class="PlainVariable">
+					<Id>1593375626373</Id>
+					<Name><![CDATA[lastTime]]></Name>
+					<X>-150</X><Y>80</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1593375632327</Id>
+					<Name><![CDATA[dt]]></Name>
+					<X>-150</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
 				<Variable Class="AuxVariable">
 					<Id>1593295359745</Id>
 					<Name><![CDATA[fracciónDeCrecimientoPoblacional]]></Name>
@@ -494,7 +524,7 @@
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties External="false" Constant="false" Array="false">
-						<Formula><![CDATA[0]]></Formula>
+						<Formula><![CDATA[max(requerimientoDeArroz, productividadDeArroz)]]></Formula>
 						<Value><![CDATA[0]]></Value>
 						<Color/>
 					</Properties>
@@ -779,18 +809,13 @@
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties Array="true">
+					<Properties Array="false">
 					<EquationStyle>custom</EquationStyle>
 					<Width>20</Width>
 					<Height>20</Height>
-						<Expression><![CDATA[area_de_arroz(t-dt) + (tasaDeAumentoDelAreaDeArroz * dt) - (tasaDeDescarteDeArroz * dt)]]></Expression>
+						<Expression><![CDATA[area_de_arroz + (tasaDeAumentoDelAreaDeArroz * dt) - (tasaDeDescarteDeArroz * dt)]]></Expression>
 						<InitialValue><![CDATA[0]]></InitialValue>
 						<Color>-6632142</Color>
-						<Array>
-							<CustomExpression>
-								<Expression><![CDATA[area_de_arroz[t-dt] + (tasaDeAumentoDelAreaDeArroz * dt) - (tasaDeDescarteDeArroz * dt)]]></Expression>
-							</CustomExpression>
-						</Array>
 					</Properties>
 				</Variable>
 				<Variable Class="StockVariable">
@@ -801,17 +826,13 @@
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties Array="true">
+					<Properties Array="false">
 					<EquationStyle>custom</EquationStyle>
 					<Width>20</Width>
 					<Height>20</Height>
+						<Expression><![CDATA[poblacion + (crecimientoDeLaPoblacion * dt)]]></Expression>
 						<InitialValue><![CDATA[0]]></InitialValue>
 						<Color>-14774017</Color>
-						<Array>
-							<CustomExpression>
-								<Expression><![CDATA[poblacion[t -dt] + crecimientoDeLaPoblacion]]></Expression>
-							</CustomExpression>
-						</Array>
 					</Properties>
 				</Variable>
 				<Variable Class="StockVariable">
@@ -822,18 +843,13 @@
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties Array="true">
+					<Properties Array="false">
 					<EquationStyle>custom</EquationStyle>
 					<Width>20</Width>
 					<Height>20</Height>
-						<Expression><![CDATA[produccionPotecialDeArroz(t-dt) + (tasaDeAumentoNormalDeProductividad*dt)]]></Expression>
+						<Expression><![CDATA[produccionPotecialDeArroz + (tasaDeAumentoNormalDeProductividad*dt)]]></Expression>
 						<InitialValue><![CDATA[0]]></InitialValue>
 						<Color>-6632142</Color>
-						<Array>
-							<CustomExpression>
-								<Expression><![CDATA[produccionPotecialDeArroz[t-dt] + (tasaDeAumentoNormalDeProductividad*dt)]]></Expression>
-							</CustomExpression>
-						</Array>
 					</Properties>
 				</Variable>
 				<Variable Class="StockVariable">
@@ -844,18 +860,13 @@
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
-					<Properties Array="true">
+					<Properties Array="false">
 					<EquationStyle>custom</EquationStyle>
 					<Width>20</Width>
 					<Height>20</Height>
-						<Expression><![CDATA[multiplicadorDeLaProductividadDelArrozPorLaDegradaciónDeLaTierra(t-dt) + (regeneracion * dt) - (taza_de_degeneracion * dt)]]></Expression>
+						<Expression><![CDATA[multiplicadorDeLaProductividadDelArrozPorLaDegradaciónDeLaTierra + (regeneracion * dt) - (taza_de_degeneracion * dt)]]></Expression>
 						<InitialValue><![CDATA[0]]></InitialValue>
 						<Color>-11179217</Color>
-						<Array>
-							<CustomExpression>
-								<Expression><![CDATA[multiplicadorDeLaProductividadDelArrozPorLaDegradaciónDeLaTierra[t-dt] + (regeneracion * dt) - (taza_de_degeneracion * dt)]]></Expression>
-							</CustomExpression>
-						</Array>
 					</Properties>
 				</Variable>
 				<Variable Class="StockVariable">
@@ -866,18 +877,13 @@
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties Array="true">
+					<Properties Array="false">
 					<EquationStyle>custom</EquationStyle>
 					<Width>20</Width>
 					<Height>20</Height>
-						<Expression><![CDATA[multiplicadorDeProductividadDeCapacitaciónYExtensión(t - dt) + (incrementoDeProductividadDesdeAprendizaje * dt)]]></Expression>
+						<Expression><![CDATA[multiplicadorDeProductividadDeCapacitaciónYExtensión + (incrementoDeProductividadDesdeAprendizaje * dt)]]></Expression>
 						<InitialValue><![CDATA[0]]></InitialValue>
 						<Color/>
-						<Array>
-							<CustomExpression>
-								<Expression><![CDATA[multiplicadorDeProductividadDeCapacitaciónYExtensión[t - dt] + (incrementoDeProductividadDesdeAprendizaje * dt)]]></Expression>
-							</CustomExpression>
-						</Array>
 					</Properties>
 				</Variable>
 				<Variable Class="StockVariable">
@@ -888,18 +894,13 @@
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties Array="true">
+					<Properties Array="false">
 					<EquationStyle>custom</EquationStyle>
 					<Width>20</Width>
 					<Height>20</Height>
-						<Expression><![CDATA[intensidadDeCultivo(t -dt) + (tasaDeAumentoDeIntensidadDeCultivo * dt)]]></Expression>
+						<Expression><![CDATA[intensidadDeCultivo + (tasaDeAumentoDeIntensidadDeCultivo * dt)]]></Expression>
 						<InitialValue><![CDATA[0]]></InitialValue>
 						<Color/>
-						<Array>
-							<CustomExpression>
-								<Expression><![CDATA[intensidadDeCultivo[t -dt] + (tasaDeAumentoDeIntensidadDeCultivo * dt)]]></Expression>
-							</CustomExpression>
-						</Array>
 					</Properties>
 				</Variable>
 				<Variable Class="StockVariable">
@@ -910,18 +911,13 @@
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties Array="true">
+					<Properties Array="false">
 					<EquationStyle>custom</EquationStyle>
 					<Width>20</Width>
 					<Height>20</Height>
-						<Expression><![CDATA[aprendizaje(t - dt) + tazaDeIncrementoDeAprendizaje]]></Expression>
+						<Expression><![CDATA[aprendizaje + (tazaDeIncrementoDeAprendizaje*dt)]]></Expression>
 						<InitialValue><![CDATA[1]]></InitialValue>
 						<Color/>
-						<Array>
-							<CustomExpression>
-								<Expression><![CDATA[aprendizaje[t - dt] + (tazaDeIncrementoDeAprendizaje * dt)]]></Expression>
-							</CustomExpression>
-						</Array>
 					</Properties>
 				</Variable>
 				<Variable Class="StockVariable">
@@ -948,17 +944,13 @@
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties Array="true">
+					<Properties Array="false">
 					<EquationStyle>custom</EquationStyle>
 					<Width>20</Width>
 					<Height>20</Height>
+						<Expression><![CDATA[fracciónDeFertilidadBiológica + (biocrecimiento * dt)]]></Expression>
 						<InitialValue><![CDATA[0]]></InitialValue>
 						<Color/>
-						<Array>
-							<CustomExpression>
-								<Expression><![CDATA[fracciónDeFertilidadBiológica[t - dt] + (biocrecimiento * dt)]]></Expression>
-							</CustomExpression>
-						</Array>
 					</Properties>
 				</Variable>
 				<Variable Class="StockVariable">
@@ -969,17 +961,13 @@
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties Array="true">
+					<Properties Array="false">
 					<EquationStyle>custom</EquationStyle>
 					<Width>20</Width>
 					<Height>20</Height>
+						<Expression><![CDATA[entrenamientoYExtension + (tazaDeIncrementoDeEntrenamientoYExtension * dt)]]></Expression>
 						<InitialValue><![CDATA[0]]></InitialValue>
 						<Color/>
-						<Array>
-							<CustomExpression>
-								<Expression><![CDATA[entrenamientoYExtension[t - dt] + (tazaDeIncrementoDeEntrenamientoYExtension * dt)]]></Expression>
-							</CustomExpression>
-						</Array>
 					</Properties>
 				</Variable>
 				<Variable Class="Flow">
@@ -1067,7 +1055,7 @@
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SourceId="1593296189747" External="false" Constant="false" Array="false">
-						<Formula><![CDATA[0]]></Formula>
+						<Formula><![CDATA[multiplicadorDeLaProductividadDelArrozPorLaDegradaciónDeLaTierra * factorDeDegradacion]]></Formula>
 						<Color>-9728477</Color>
 						<ValveIndex>1</ValveIndex>
 						<Points>
@@ -1105,7 +1093,7 @@
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties TargetId="1593296916212" External="false" Constant="false" Array="false">
-						<Formula><![CDATA[0]]></Formula>
+						<Formula><![CDATA[fraccionDeProductividadDesdeAprendizaje * multiplicadorDeProductividadDeCapacitaciónYExtensión]]></Formula>
 						<Color/>
 						<ValveIndex>1</ValveIndex>
 						<Points>
@@ -1872,13 +1860,13 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link TargetId="1593301329492" Polarity="null">
+				<Link SourceId="1593301436734" TargetId="1593301329492" Polarity="null">
 					<Height>26.719</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-140</X><Y>80</Y></Direction>
+					<Direction><X>-140</X><Y>90</Y></Direction>
 					<Id>1593302282117</Id>
-					<Name><![CDATA[ - relacionDeAutoSufucienciaDeComida]]></Name>
-					<X>600</X><Y>260</Y>
+					<Name><![CDATA[requerimientoDeArroz - relacionDeAutoSufucienciaDeComida]]></Name>
+					<X>600</X><Y>250</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2307,7 +2295,176 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
+				<Link SourceId="1593375632327" TargetId="1593294937342" Polarity="null">
+					<Height>82.106</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>460</X><Y>0</Y></Direction>
+					<Id>1593375706348</Id>
+					<Name><![CDATA[dt - area_de_arroz]]></Name>
+					<X>-150</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color>-1</Color>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593375632327" TargetId="1593296189747" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>370</X><Y>200</Y></Direction>
+					<Id>1593375762512</Id>
+					<Name><![CDATA[dt - multiplicadorDeLaProductividadDelArrozPorLaDegradaciónDeLaTierra]]></Name>
+					<X>-150</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color>-1</Color>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593375632327" TargetId="1593295171906" Polarity="null">
+					<Height>187.375</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>1100</X><Y>0</Y></Direction>
+					<Id>1593377065052</Id>
+					<Name><![CDATA[dt - poblacion]]></Name>
+					<X>-150</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color>-1</Color>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593375632327" TargetId="1593296916212" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>370</X><Y>400</Y></Direction>
+					<Id>1593377131810</Id>
+					<Name><![CDATA[dt - multiplicadorDeProductividadDeCapacitaciónYExtensión]]></Name>
+					<X>-150</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color>-1</Color>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593375632327" TargetId="1593296935872" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>370</X><Y>600</Y></Direction>
+					<Id>1593377157483</Id>
+					<Name><![CDATA[dt - intensidadDeCultivo]]></Name>
+					<X>-150</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color>-1</Color>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593375632327" TargetId="1593296957655" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>370</X><Y>800</Y></Direction>
+					<Id>1593377181188</Id>
+					<Name><![CDATA[dt - aprendizaje]]></Name>
+					<X>-150</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color>-1</Color>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593375632327" TargetId="1593296996627" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>1100</X><Y>800</Y></Direction>
+					<Id>1593377213474</Id>
+					<Name><![CDATA[dt - entrenamientoYExtension]]></Name>
+					<X>-150</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color>-1</Color>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593375632327" TargetId="1593296987748" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>1100</X><Y>600</Y></Direction>
+					<Id>1593377236017</Id>
+					<Name><![CDATA[dt - fracciónDeFertilidadBiológica]]></Name>
+					<X>-150</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color>-1</Color>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593375632327" TargetId="1593295851793" Polarity="null">
+					<Height>20.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>1100</X><Y>200</Y></Direction>
+					<Id>1593377259519</Id>
+					<Name><![CDATA[dt - produccionPotecialDeArroz]]></Name>
+					<X>-150</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color>-1</Color>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
 			</Dependences>
+			<Events>
+				<Event>
+					<Id>1593375641038</Id>
+					<Name><![CDATA[updateTime]]></Name>
+					<X>-150</X><Y>110</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TriggerType="condition" Mode="occuresOnce">
+						<Timeout Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</Timeout>
+						<Rate Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="RateUnits"><![CDATA[PER_SECOND]]></Unit>
+						</Rate>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1593417600000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+						<Condition><![CDATA[lastTime != time()]]></Condition>
+					</Properties>
+					<Action><![CDATA[dt = time() - lastTime;
+lastTime = time();]]></Action>
+				</Event>
+			</Events>
 			<AgentLinks>
 				<AgentLink>
 					<Id>1593293421111</Id>
