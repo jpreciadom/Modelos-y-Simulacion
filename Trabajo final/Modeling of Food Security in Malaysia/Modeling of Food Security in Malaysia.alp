@@ -242,7 +242,7 @@
 					<EquationStyle>custom</EquationStyle>
 					<Width>20</Width>
 					<Height>20</Height>
-						<Expression><![CDATA[riceArea + (riceAreaIncreaseRate * dt) - (riceDiscardRate * dt)]]></Expression>
+						<Expression><![CDATA[(riceAreaIncreaseRate * dt) - (riceDiscardRate * dt)]]></Expression>
 						<InitialValue><![CDATA[680647]]></InitialValue>
 						<Color>-6632142</Color>
 					</Properties>
@@ -259,7 +259,7 @@
 					<EquationStyle>custom</EquationStyle>
 					<Width>20</Width>
 					<Height>20</Height>
-						<Expression><![CDATA[croppingIntensity + (croppingIntensityIncreaseRate * dt)]]></Expression>
+						<Expression><![CDATA[(croppingIntensityIncreaseRate * dt)]]></Expression>
 						<InitialValue><![CDATA[0]]></InitialValue>
 						<Color>-65536</Color>
 					</Properties>
@@ -276,8 +276,8 @@
 					<EquationStyle>custom</EquationStyle>
 					<Width>20</Width>
 					<Height>20</Height>
-						<Expression><![CDATA[riceProductivityMultiplierFromLandDegradation + (regeneration*dt) - (degenerationRate * dt)]]></Expression>
-						<InitialValue><![CDATA[10000]]></InitialValue>
+						<Expression><![CDATA[(regeneration*dt) - (degenerationRate * dt)]]></Expression>
+						<InitialValue><![CDATA[0.99]]></InitialValue>
 						<Color>-29696</Color>
 					</Properties>
 				</Variable>
@@ -293,8 +293,8 @@
 					<EquationStyle>custom</EquationStyle>
 					<Width>20</Width>
 					<Height>20</Height>
-						<Expression><![CDATA[productivityMultiplierFromTrainingAndExtension + (productivityIncreaseFromLearning * dt)]]></Expression>
-						<InitialValue><![CDATA[0]]></InitialValue>
+						<Expression><![CDATA[(productivityIncreaseFromLearning * dt)]]></Expression>
+						<InitialValue><![CDATA[0.61]]></InitialValue>
 						<Color>-16724271</Color>
 					</Properties>
 				</Variable>
@@ -310,7 +310,7 @@
 					<EquationStyle>custom</EquationStyle>
 					<Width>20</Width>
 					<Height>20</Height>
-						<Expression><![CDATA[trainingAndExtension + (trainingAndExtensionIncreaseRate * dt)]]></Expression>
+						<Expression><![CDATA[(trainingAndExtensionIncreaseRate * dt)]]></Expression>
 						<InitialValue><![CDATA[0]]></InitialValue>
 						<Color>-16724271</Color>
 					</Properties>
@@ -327,14 +327,14 @@
 					<EquationStyle>custom</EquationStyle>
 					<Width>20</Width>
 					<Height>20</Height>
-						<Expression><![CDATA[population + (populationGrowthRate * dt) - (deaths * dt)]]></Expression>
-						<InitialValue><![CDATA[5000]]></InitialValue>
+						<Expression><![CDATA[(populationGrowthRate * dt) - (deaths * dt)]]></Expression>
+						<InitialValue><![CDATA[18102400]]></InitialValue>
 						<Color>-16776961</Color>
 					</Properties>
 				</Variable>
 				<Variable Class="StockVariable">
 					<Id>1593381500684</Id>
-					<Name><![CDATA[stock]]></Name>
+					<Name><![CDATA[availableLandstock]]></Name>
 					<X>50</X><Y>50</Y>
 					<Label><X>0</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -345,7 +345,7 @@
 					<Width>20</Width>
 					<Height>20</Height>
 						<InitialValue><![CDATA[88000]]></InitialValue>
-						<Color/>
+						<Color>-6632142</Color>
 					</Properties>
 				</Variable>
 				<Variable Class="Flow">
@@ -376,7 +376,7 @@
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SourceId="1593372730024" External="false" Constant="false" Array="false">
-						<Formula><![CDATA[0.0003]]></Formula>
+						<Formula><![CDATA[0.0085 * riceArea]]></Formula>
 						<Color>-8355840</Color>
 						<ValveIndex>1</ValveIndex>
 						<Points>
@@ -490,7 +490,7 @@
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties TargetId="1593375194645" External="false" Constant="false" Array="false">
-						<Formula><![CDATA[population * 0.0001]]></Formula>
+						<Formula><![CDATA[population * 0.021]]></Formula>
 						<Color>-10185235</Color>
 						<ValveIndex>1</ValveIndex>
 						<Points>
@@ -509,7 +509,7 @@
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SourceId="1593375194645" External="false" Constant="false" Array="false">
-						<Formula><![CDATA[population * 0.00007]]></Formula>
+						<Formula><![CDATA[population * 0.001]]></Formula>
 						<Color>-12566464</Color>
 						<ValveIndex>1</ValveIndex>
 						<Points>
@@ -532,7 +532,7 @@
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[10]]></Code>
+							<Code><![CDATA[80]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1593376099419</Id>
@@ -557,6 +557,30 @@
 						<SdArray>false</SdArray>
 						<ParameterEditor>
 							<Id>1593380043773</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1593382468480</Id>
+					<Name><![CDATA[convertionTime]]></Name>
+					<X>60</X><Y>130</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[8]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1593382468478</Id>
 							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
@@ -627,26 +651,11 @@
 					<Delay>false</Delay>
 				</Link>
 				<Link SourceId="1593373637427" TargetId="1593373303560" Polarity="null">
-					<Height>20.0</Height>
+					<Height>0.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
 					<Direction><X>350</X><Y>200</Y></Direction>
 					<Id>1593373691004</Id>
 					<Name><![CDATA[dt - croppingIntensity]]></Name>
-					<X>-100</X><Y>50</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Color>-1</Color>
-					<LineWidth>1</LineWidth>
-					<Delay>false</Delay>
-				</Link>
-				<Link SourceId="1593373637427" Polarity="null">
-					<Height>20.0</Height>
-					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>1050</X><Y>200</Y></Direction>
-					<Id>1593374018573</Id>
-					<Name><![CDATA[dt - ]]></Name>
 					<X>-100</X><Y>50</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1016,6 +1025,21 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
+				<Link SourceId="1593372730024" TargetId="1593373075624" Polarity="null">
+					<Height>28.04</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>90</X><Y>0</Y></Direction>
+					<Id>1593382513220</Id>
+					<Name><![CDATA[riceArea - riceDiscardRate]]></Name>
+					<X>250</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
 			</Dependences>
 			<Events>
 				<Event>
@@ -1183,6 +1207,9 @@ lastTime = time();]]></Action>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[riceValue]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[convertionTime]]></ParameterName>
 				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
