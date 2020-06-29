@@ -6,21 +6,21 @@
 -->
 <AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.5.2.202001241833" AlpVersion="8.5.1">
 <Model>
-	<Id>1593290728395</Id>
-	<Name><![CDATA[Tercer prototipo]]></Name>
+	<Id>1593356221587</Id>
+	<Name><![CDATA[Cuarto prototipo]]></Name>
 	<EngineVersion>6</EngineVersion>
-	<JavaPackageName><![CDATA[tercer_prototipo]]></JavaPackageName>
+	<JavaPackageName><![CDATA[cuarto_prototipo]]></JavaPackageName>
 	<ModelTimeUnit><![CDATA[Month]]></ModelTimeUnit>
 	<ActiveObjectClasses>
 		<!--   =========   Active Object Class   ========  -->
 		<ActiveObjectClass>
-			<Id>1593290728401</Id>
+			<Id>1593356221593</Id>
 			<Name><![CDATA[Main]]></Name>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<Generic>false</Generic>
 			<GenericParameter>
-				<Id>1593290728399</Id>
-				<Name><![CDATA[1593290728399]]></Name>
+				<Id>1593356221591</Id>
+				<Name><![CDATA[1593356221591]]></Name>
 				<GenericParameterValue Class="CodeValue">
 					<Code><![CDATA[T extends Agent]]></Code>
 				</GenericParameterValue>
@@ -81,7 +81,7 @@
 			<DatasetsCreationProperties>
 				<AutoCreate>true</AutoCreate>
 					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1593331200000</OccurrenceDate>
+					<OccurrenceDate>1593417600000</OccurrenceDate>
 					<OccurrenceTime Class="CodeUnitValue">
 						<Code><![CDATA[0]]></Code>
 						<Unit Class="TimeUnits"><![CDATA[MONTH]]></Unit>
@@ -92,7 +92,7 @@
 					</RecurrenceCode>
 			</DatasetsCreationProperties>
 			<ScaleRuler>
-				<Id>1593290728397</Id>
+				<Id>1593356221589</Id>
 				<Name><![CDATA[scale]]></Name>
 				<X>0</X><Y>-150</Y>
 				<PublicFlag>false</PublicFlag>
@@ -107,13 +107,13 @@
 				<Scale>10</Scale>
 				<InheritedFromParentAgentType>true</InheritedFromParentAgentType>
 			</ScaleRuler>
-			<CurrentLevel>1593290728400</CurrentLevel>
-			<ConnectionsId>1593290728396</ConnectionsId>
+			<CurrentLevel>1593356221592</CurrentLevel>
+			<ConnectionsId>1593356221588</ConnectionsId>
 			<Variables>
 				<Variable Class="AuxVariable">
-					<Id>1593291535536</Id>
+					<Id>1593356245864</Id>
 					<Name><![CDATA[CVial]]></Name>
-					<X>380</X><Y>430</Y>
+					<X>390</X><Y>480</Y>
 					<Label><X>-15</X><Y>25</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -126,9 +126,9 @@
 
 				</Variable>
 				<Variable Class="AuxVariable">
-					<Id>1593291535538</Id>
+					<Id>1593356245866</Id>
 					<Name><![CDATA[ViasDis]]></Name>
-					<X>450</X><Y>360</Y>
+					<X>450</X><Y>380</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -141,9 +141,9 @@
 
 				</Variable>
 				<Variable Class="AuxVariable">
-					<Id>1593292000822</Id>
+					<Id>1593356245868</Id>
 					<Name><![CDATA[VMVia]]></Name>
-					<X>820</X><Y>380</Y>
+					<X>560</X><Y>370</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -156,10 +156,10 @@
 
 				</Variable>
 				<Variable Class="AuxVariable">
-					<Id>1593292606371</Id>
+					<Id>1593356245870</Id>
 					<Name><![CDATA[CAEnt]]></Name>
-					<X>360</X><Y>150</Y>
-					<Label><X>-20</X><Y>20</Y></Label>
+					<X>370</X><Y>200</Y>
+					<Label><X>-50</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -171,40 +171,115 @@
 
 				</Variable>
 				<Variable Class="AuxVariable">
-					<Id>1593296959377</Id>
+					<Id>1593356245872</Id>
 					<Name><![CDATA[RRepVias]]></Name>
-					<X>540</X><Y>340</Y>
+					<X>840</X><Y>330</Y>
 					<Label><X>-20</X><Y>20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties External="false" Constant="false" Array="false">
-						<Formula><![CDATA[delayMaterial(RepVias,2,0,0)]]></Formula>
+						<Formula><![CDATA[delayMaterial(RepVias,3,0,0)]]></Formula>
 						<Value><![CDATA[0]]></Value>
 						<Color/>
 					</Properties>
 
 				</Variable>
 				<Variable Class="AuxVariable">
-					<Id>1593301810125</Id>
-					<Name><![CDATA[PCVias]]></Name>
-					<X>570</X><Y>70</Y>
+					<Id>1593357672550</Id>
+					<Name><![CDATA[ICVias]]></Name>
+					<X>890</X><Y>570</Y>
+					<Label><X>-10</X><Y>25</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false">
+						<Formula><![CDATA[IVias-(ViasARep*VKRep)]]></Formula>
+						<Value><![CDATA[0]]></Value>
+						<Color/>
+					</Properties>
+
+				</Variable>
+				<Variable Class="AuxVariable">
+					<Id>1593357825679</Id>
+					<Name><![CDATA[ViasARep]]></Name>
+					<X>800</X><Y>510</Y>
+					<Label><X>-25</X><Y>35</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false">
+						<Formula><![CDATA[(ViasDet*TRepVias<IVias/VKRep ? ViasDet*TRepVias : IVias/VKRep)]]></Formula>
+						<Value><![CDATA[0]]></Value>
+						<Color/>
+					</Properties>
+
+				</Variable>
+				<Variable Class="AuxVariable">
+					<Id>1593360167148</Id>
+					<Name><![CDATA[RCons]]></Name>
+					<X>750</X><Y>200</Y>
+					<Label><X>-15</X><Y>25</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false">
+						<Formula><![CDATA[delayMaterial(ConsVias,2,0,0)]]></Formula>
+						<Value><![CDATA[0]]></Value>
+						<Color/>
+					</Properties>
+
+				</Variable>
+				<Variable Class="AuxVariable">
+					<Id>1593360252782</Id>
+					<Name><![CDATA[IVias]]></Name>
+					<X>590</X><Y>620</Y>
 					<Label><X>0</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties External="false" Constant="false" Array="false">
-						<Formula><![CDATA[ConsVia(time())]]></Formula>
+						<Formula><![CDATA[InvVias]]></Formula>
+						<Value><![CDATA[0]]></Value>
+						<Color/>
+					</Properties>
+
+				</Variable>
+				<Variable Class="AuxVariable">
+					<Id>1593360447833</Id>
+					<Name><![CDATA[DAReca]]></Name>
+					<X>120</X><Y>310</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false">
+						<Formula><![CDATA[(TImp*VPAutos)*Autos]]></Formula>
+						<Value><![CDATA[0]]></Value>
+						<Color/>
+					</Properties>
+
+				</Variable>
+				<Variable Class="AuxVariable">
+					<Id>1593360475474</Id>
+					<Name><![CDATA[RRImp]]></Name>
+					<X>100</X><Y>410</Y>
+					<Label><X>0</X><Y>25</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false">
+						<Formula><![CDATA[delayInformation(DAReca,2,0)]]></Formula>
 						<Value><![CDATA[0]]></Value>
 						<Color/>
 					</Properties>
 
 				</Variable>
 				<Variable Class="StockVariable">
-					<Id>1593291535540</Id>
+					<Id>1593356245876</Id>
 					<Name><![CDATA[ViasBuenas]]></Name>
-					<X>666.389</X><Y>253.747</Y>
-					<Label><X>43.611</X><Y>-3.747</Y></Label>
+					<X>680</X><Y>300</Y>
+					<Label><X>-101.389</X><Y>-3.747</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -217,9 +292,9 @@
 					</Properties>
 				</Variable>
 				<Variable Class="StockVariable">
-					<Id>1593291535542</Id>
+					<Id>1593356245878</Id>
 					<Name><![CDATA[ViasDet]]></Name>
-					<X>666.389</X><Y>479.211</Y>
+					<X>676.389</X><Y>529.211</Y>
 					<Label><X>-15</X><Y>35</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -233,9 +308,9 @@
 					</Properties>
 				</Variable>
 				<Variable Class="StockVariable">
-					<Id>1593291535544</Id>
+					<Id>1593356245880</Id>
 					<Name><![CDATA[Autos]]></Name>
-					<X>240</X><Y>260</Y>
+					<X>250</X><Y>310</Y>
 					<Label><X>-59.5</X><Y>-1.5</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -249,72 +324,69 @@
 						<Color/>
 					</Properties>
 				</Variable>
-				<Variable Class="Flow">
-					<Id>1593291535487</Id>
-					<Name><![CDATA[ConsVias]]></Name>
-					<X>666.389</X><Y>47.889</Y>
-					<Label><X>23.611</X><Y>2.111</Y></Label>
+				<Variable Class="StockVariable">
+					<Id>1593357223479</Id>
+					<Name><![CDATA[Impuestos]]></Name>
+					<X>240</X><Y>610</Y>
+					<Label><X>-30</X><Y>-35</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties TargetId="1593291535540" External="false" Constant="false" Array="false">
-						<Formula><![CDATA[PCVias]]></Formula>
+					<Properties Array="false">
+					<EquationStyle>classic</EquationStyle>
+					<Width>40</Width>
+					<Height>40</Height>
+						<InitialValue><![CDATA[0]]></InitialValue>
 						<Color/>
-						<ValveIndex>1</ValveIndex>
-						<Points>
-							<Point><X>0</X><Y>0</Y></Point>
-							<Point><X>0</X><Y>99</Y></Point>
-							<Point><X>0</X><Y>206</Y></Point>
-						</Points>
 					</Properties>
 				</Variable>
 				<Variable Class="Flow">
-					<Id>1593291535489</Id>
+					<Id>1593356245804</Id>
 					<Name><![CDATA[DetVias]]></Name>
-					<X>666.389</X><Y>253.747</Y>
-					<Label><X>23.611</X><Y>-3.747</Y></Label>
+					<X>679.389</X><Y>299.747</Y>
+					<Label><X>-64.389</X><Y>0.253</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties SourceId="1593291535540" TargetId="1593291535542" External="false" Constant="false" Array="false">
+					<Properties SourceId="1593356245876" TargetId="1593356245878" External="false" Constant="false" Array="false">
 						<Formula><![CDATA[ViasBuenas/VMVia]]></Formula>
 						<Color/>
 						<ValveIndex>1</ValveIndex>
 						<Points>
 							<Point><X>0</X><Y>0</Y></Point>
-							<Point><X>38</X><Y>118</Y></Point>
-							<Point><X>0</X><Y>226</Y></Point>
+							<Point><X>-20</X><Y>120</Y></Point>
+							<Point><X>-4</X><Y>229</Y></Point>
 						</Points>
 					</Properties>
 				</Variable>
 				<Variable Class="Flow">
-					<Id>1593291535491</Id>
+					<Id>1593356245808</Id>
 					<Name><![CDATA[RepVias]]></Name>
-					<X>665.389</X><Y>478.211</Y>
-					<Label><X>-61.389</X><Y>0.789</Y></Label>
+					<X>675.389</X><Y>528.211</Y>
+					<Label><X>14.611</X><Y>1.789</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties SourceId="1593291535542" External="false" Constant="false" Array="false">
-						<Formula><![CDATA[ViasDet * TRepVias]]></Formula>
+					<Properties SourceId="1593356245878" External="false" Constant="false" Array="false">
+						<Formula><![CDATA[ViasARep]]></Formula>
 						<Color/>
 						<ValveIndex>1</ValveIndex>
 						<Points>
 							<Point><X>0</X><Y>0</Y></Point>
-							<Point><X>-16</X><Y>-109</Y></Point>
-							<Point><X>-16</X><Y>-159</Y></Point>
+							<Point><X>44</X><Y>-109</Y></Point>
+							<Point><X>34</X><Y>-179</Y></Point>
 						</Points>
 					</Properties>
 				</Variable>
 				<Variable Class="Flow">
-					<Id>1593291535493</Id>
+					<Id>1593356245810</Id>
 					<Name><![CDATA[EntAutos]]></Name>
-					<X>240</X><Y>80</Y>
+					<X>250</X><Y>130</Y>
 					<Label><X>-69.5</X><Y>-1.5</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties TargetId="1593291535544" External="false" Constant="false" Array="false">
+					<Properties TargetId="1593356245880" External="false" Constant="false" Array="false">
 						<Formula><![CDATA[CAEnt]]></Formula>
 						<Color/>
 						<ValveIndex>1</ValveIndex>
@@ -326,63 +398,138 @@
 					</Properties>
 				</Variable>
 				<Variable Class="Flow">
-					<Id>1593291535495</Id>
+					<Id>1593356245812</Id>
 					<Name><![CDATA[SalAutos]]></Name>
-					<X>239.175</X><Y>259.55</Y>
+					<X>249.175</X><Y>309.55</Y>
 					<Label><X>-69.5</X><Y>-6.5</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties SourceId="1593291535544" External="false" Constant="false" Array="false">
+					<Properties SourceId="1593356245880" External="false" Constant="false" Array="false">
 						<Formula><![CDATA[Autos/PVidaAutos]]></Formula>
 						<Color/>
 						<ValveIndex>1</ValveIndex>
 						<Points>
 							<Point><X>0</X><Y>0</Y></Point>
-							<Point><X>0</X><Y>130</Y></Point>
-							<Point><X>0</X><Y>230</Y></Point>
+							<Point><X>0</X><Y>100</Y></Point>
+							<Point><X>0</X><Y>170</Y></Point>
 						</Points>
 					</Properties>
 				</Variable>
 				<Variable Class="Flow">
-					<Id>1593293376420</Id>
+					<Id>1593356245814</Id>
 					<Name><![CDATA[ViasRep]]></Name>
-					<X>520</X><Y>250</Y>
-					<Label><X>-25</X><Y>25</Y></Label>
+					<X>830</X><Y>300</Y>
+					<Label><X>-25</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties TargetId="1593291535540" External="false" Constant="false" Array="false">
+					<Properties TargetId="1593356245876" External="false" Constant="false" Array="false">
 						<Formula><![CDATA[RRepVias]]></Formula>
 						<Color/>
 						<ValveIndex>1</ValveIndex>
 						<Points>
 							<Point><X>0</X><Y>0</Y></Point>
-							<Point><X>70</X><Y>0</Y></Point>
-							<Point><X>146</X><Y>3</Y></Point>
+							<Point><X>-40</X><Y>0</Y></Point>
+							<Point><X>-150</X><Y>0</Y></Point>
+						</Points>
+					</Properties>
+				</Variable>
+				<Variable Class="Flow">
+					<Id>1593357154370</Id>
+					<Name><![CDATA[InvVias]]></Name>
+					<X>240</X><Y>610</Y>
+					<Label><X>-25</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SourceId="1593357223479" External="false" Constant="false" Array="false">
+						<Formula><![CDATA[Impuestos*TIVias]]></Formula>
+						<Color/>
+						<ValveIndex>1</ValveIndex>
+						<Points>
+							<Point><X>0</X><Y>0</Y></Point>
+							<Point><X>80</X><Y>0</Y></Point>
+							<Point><X>140</X><Y>0</Y></Point>
+						</Points>
+					</Properties>
+				</Variable>
+				<Variable Class="Flow">
+					<Id>1593357258735</Id>
+					<Name><![CDATA[RImp]]></Name>
+					<X>90</X><Y>610</Y>
+					<Label><X>-15</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TargetId="1593357223479" External="false" Constant="false" Array="false">
+						<Formula><![CDATA[RRImp]]></Formula>
+						<Color/>
+						<ValveIndex>1</ValveIndex>
+						<Points>
+							<Point><X>0</X><Y>0</Y></Point>
+							<Point><X>60</X><Y>0</Y></Point>
+							<Point><X>150</X><Y>0</Y></Point>
+						</Points>
+					</Properties>
+				</Variable>
+				<Variable Class="Flow">
+					<Id>1593357997565</Id>
+					<Name><![CDATA[ConsVias]]></Name>
+					<X>680</X><Y>120</Y>
+					<Label><X>-20</X><Y>-25</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false">
+						<Formula><![CDATA[ICVias/VKCons]]></Formula>
+						<Color/>
+						<ValveIndex>1</ValveIndex>
+						<Points>
+							<Point><X>0</X><Y>0</Y></Point>
+							<Point><X>80</X><Y>0</Y></Point>
+							<Point><X>180</X><Y>0</Y></Point>
+						</Points>
+					</Properties>
+				</Variable>
+				<Variable Class="Flow">
+					<Id>1593359967817</Id>
+					<Name><![CDATA[ViasCons]]></Name>
+					<X>680</X><Y>190</Y>
+					<Label><X>-75</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TargetId="1593356245876" External="false" Constant="false" Array="false">
+						<Formula><![CDATA[RCons]]></Formula>
+						<Color/>
+						<ValveIndex>1</ValveIndex>
+						<Points>
+							<Point><X>0</X><Y>0</Y></Point>
+							<Point><X>0</X><Y>40</Y></Point>
+							<Point><X>0</X><Y>110</Y></Point>
 						</Points>
 					</Properties>
 				</Variable>
 				<Variable Class="Parameter">
-					<Id>1593291535522</Id>
+					<Id>1593356245853</Id>
 					<Name><![CDATA[TRepVias]]></Name>
-					<X>520</X><Y>440</Y>
+					<X>820</X><Y>470</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[]]></Type>
-						<UnitType><![CDATA[RATE]]></UnitType>
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
 						<UnitOfValue Class="RateUnits"><![CDATA[PER_MONTH]]></UnitOfValue>
 						<SdArray>false</SdArray>
-						<DefaultValue Class="CodeUnitValue">
-							<Code><![CDATA[0.02]]></Code>
-							<Unit Class="RateUnits"><![CDATA[PER_MONTH]]></Unit>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[0.09]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
-							<Id>1593291535520</Id>
-							<EditorContolType>UNIT_EDITOR</EditorContolType>
+							<Id>1593356245851</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
 							<DelimeterType>NO_DELIMETER</DelimeterType>
@@ -390,9 +537,9 @@
 					</Properties>                 
 				</Variable>
 				<Variable Class="Parameter">
-					<Id>1593291535525</Id>
+					<Id>1593356245856</Id>
 					<Name><![CDATA[PVidaVia]]></Name>
-					<X>850</X><Y>290</Y>
+					<X>520</X><Y>320</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -407,7 +554,7 @@
 							<Unit Class="TimeUnits"><![CDATA[MONTH]]></Unit>
 						</DefaultValue>
 						<ParameterEditor>
-							<Id>1593291535523</Id>
+							<Id>1593356245854</Id>
 							<EditorContolType>UNIT_EDITOR</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
@@ -416,9 +563,9 @@
 					</Properties>                 
 				</Variable>
 				<Variable Class="Parameter">
-					<Id>1593291535531</Id>
+					<Id>1593356245859</Id>
 					<Name><![CDATA[CPEAutos]]></Name>
-					<X>370</X><Y>70</Y>
+					<X>380</X><Y>120</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -433,7 +580,7 @@
 							<Unit Class="RateUnits"><![CDATA[PER_MONTH]]></Unit>
 						</DefaultValue>
 						<ParameterEditor>
-							<Id>1593291535529</Id>
+							<Id>1593356245857</Id>
 							<EditorContolType>UNIT_EDITOR</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
@@ -442,9 +589,9 @@
 					</Properties>                 
 				</Variable>
 				<Variable Class="Parameter">
-					<Id>1593291535534</Id>
+					<Id>1593356245862</Id>
 					<Name><![CDATA[PVidaAutos]]></Name>
-					<X>300</X><Y>420</Y>
+					<X>300</X><Y>480</Y>
 					<Label><X>-35</X><Y>20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -459,8 +606,131 @@
 							<Unit Class="TimeUnits"><![CDATA[MONTH]]></Unit>
 						</DefaultValue>
 						<ParameterEditor>
-							<Id>1593291535532</Id>
+							<Id>1593356245860</Id>
 							<EditorContolType>UNIT_EDITOR</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1593357345463</Id>
+					<Name><![CDATA[VPAutos]]></Name>
+					<X>140</X><Y>170</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[100]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1593357345461</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1593357467478</Id>
+					<Name><![CDATA[TIVias]]></Name>
+					<X>270</X><Y>680</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[]]></Type>
+						<UnitType><![CDATA[RATE]]></UnitType>
+						<UnitOfValue Class="RateUnits"><![CDATA[PER_MONTH]]></UnitOfValue>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeUnitValue">
+							<Code><![CDATA[0.5]]></Code>
+							<Unit Class="RateUnits"><![CDATA[PER_MONTH]]></Unit>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1593357467476</Id>
+							<EditorContolType>UNIT_EDITOR</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1593357581574</Id>
+					<Name><![CDATA[VKRep]]></Name>
+					<X>880</X><Y>510</Y>
+					<Label><X>-20</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[500000000]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1593357581572</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1593360055486</Id>
+					<Name><![CDATA[VKCons]]></Name>
+					<X>810</X><Y>220</Y>
+					<Label><X>-20</X><Y>20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[1150000000]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1593360055484</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1593360463289</Id>
+					<Name><![CDATA[TImp]]></Name>
+					<X>60</X><Y>210</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<UnitOfValue Class="RateUnits"><![CDATA[PER_MONTH]]></UnitOfValue>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[0.15]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1593360463287</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
 							<DelimeterType>NO_DELIMETER</DelimeterType>
@@ -469,13 +739,13 @@
 				</Variable>
 			</Variables>
 			<Dependences>
-				<Link SourceId="1593291535540" TargetId="1593291535489" Polarity="null">
-					<Height>38.716</Height>
+				<Link SourceId="1593356245876" TargetId="1593356245804" Polarity="null">
+					<Height>-27.674</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>38</X><Y>118</Y></Direction>
-					<Id>1593291535497</Id>
+					<Direction><X>34</X><Y>121</Y></Direction>
+					<Id>1593356245816</Id>
 					<Name><![CDATA[ViasBuenas - DetVias]]></Name>
-					<X>666.389</X><Y>253.747</Y>
+					<X>680</X><Y>300</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -484,13 +754,13 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1593291535542" TargetId="1593291535491" Polarity="null">
-					<Height>23.092</Height>
+				<Link SourceId="1593356245878" TargetId="1593357825679" Polarity="null">
+					<Height>-6.558</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-29</X><Y>-107</Y></Direction>
-					<Id>1593291535499</Id>
-					<Name><![CDATA[ViasDet - RepVias]]></Name>
-					<X>666.389</X><Y>479.211</Y>
+					<Direction><X>123</X><Y>-20</Y></Direction>
+					<Id>1593356245818</Id>
+					<Name><![CDATA[ViasDet - ViasARep]]></Name>
+					<X>676.389</X><Y>529.211</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -499,13 +769,13 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1593291535522" TargetId="1593291535491" Polarity="null">
-					<Height>-10.144</Height>
+				<Link SourceId="1593356245853" TargetId="1593357825679" Polarity="null">
+					<Height>-1.581</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>117</X><Y>-68</Y></Direction>
-					<Id>1593291535501</Id>
-					<Name><![CDATA[TRepVias - RepVias]]></Name>
-					<X>520</X><Y>440</Y>
+					<Direction><X>-20</X><Y>40</Y></Direction>
+					<Id>1593356245820</Id>
+					<Name><![CDATA[TRepVias - ViasARep]]></Name>
+					<X>820</X><Y>470</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -514,13 +784,13 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1593291535525" TargetId="1593292000822" Polarity="null">
+				<Link SourceId="1593356245856" TargetId="1593356245868" Polarity="null">
 					<Height>14.975</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-30</X><Y>90</Y></Direction>
-					<Id>1593291535503</Id>
+					<Direction><X>40</X><Y>50</Y></Direction>
+					<Id>1593356245822</Id>
 					<Name><![CDATA[PVidaVia - VMVia]]></Name>
-					<X>850</X><Y>290</Y>
+					<X>520</X><Y>320</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -529,28 +799,13 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1593301810125" TargetId="1593291535487" Polarity="null">
-					<Height>-18.847</Height>
-					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>96</X><Y>76</Y></Direction>
-					<Id>1593291535505</Id>
-					<Name><![CDATA[PCVias - ConsVias]]></Name>
-					<X>570</X><Y>70</Y>
-					<Label><X>40</X><Y>-50</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Color/>
-					<LineWidth>1</LineWidth>
-					<Delay>false</Delay>
-				</Link>
-				<Link SourceId="1593291535544" TargetId="1593291535495" Polarity="null">
+				<Link SourceId="1593356245880" TargetId="1593356245812" Polarity="null">
 					<Height>-21.004</Height>
 					<PolarityPosition>0.95</PolarityPosition>
 					<Direction><X>662</X><Y>102</Y></Direction>
-					<Id>1593291535507</Id>
+					<Id>1593356245826</Id>
 					<Name><![CDATA[Autos - SalAutos]]></Name>
-					<X>240</X><Y>260</Y>
+					<X>250</X><Y>310</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -559,13 +814,13 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1593291535534" TargetId="1593291535495" Polarity="null">
-					<Height>11.052</Height>
+				<Link SourceId="1593356245862" TargetId="1593356245812" Polarity="null">
+					<Height>-5.731</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-61</X><Y>-31</Y></Direction>
-					<Id>1593291535509</Id>
+					<Direction><X>-51</X><Y>-71</Y></Direction>
+					<Id>1593356245828</Id>
 					<Name><![CDATA[PVidaAutos - SalAutos]]></Name>
-					<X>300</X><Y>420</Y>
+					<X>300</X><Y>480</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -574,13 +829,13 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1593291535531" TargetId="1593292606371" Polarity="null">
+				<Link SourceId="1593356245859" TargetId="1593356245870" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
 					<Direction><X>-10</X><Y>80</Y></Direction>
-					<Id>1593291535511</Id>
+					<Id>1593356245830</Id>
 					<Name><![CDATA[CPEAutos - CAEnt]]></Name>
-					<X>370</X><Y>70</Y>
+					<X>380</X><Y>120</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -589,13 +844,13 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1593291535542" TargetId="1593291535538" Polarity="null">
+				<Link SourceId="1593356245878" TargetId="1593356245866" Polarity="null">
 					<Height>81.99</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-216</X><Y>-119</Y></Direction>
-					<Id>1593291535513</Id>
+					<Direction><X>-226</X><Y>-149</Y></Direction>
+					<Id>1593356245832</Id>
 					<Name><![CDATA[ViasDet - ViasDis]]></Name>
-					<X>666</X><Y>479</Y>
+					<X>676</X><Y>529</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -604,13 +859,13 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1593291535540" TargetId="1593291535538" Polarity="null">
-					<Height>-116.281</Height>
+				<Link SourceId="1593356245876" TargetId="1593356245866" Polarity="null">
+					<Height>-66.129</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-216</X><Y>107</Y></Direction>
-					<Id>1593291535515</Id>
+					<Direction><X>-230</X><Y>80</Y></Direction>
+					<Id>1593356245834</Id>
 					<Name><![CDATA[ViasBuenas - ViasDis]]></Name>
-					<X>666</X><Y>253</Y>
+					<X>680</X><Y>300</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -619,13 +874,13 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1593291535538" TargetId="1593291535536" Polarity="null">
+				<Link SourceId="1593356245866" TargetId="1593356245864" Polarity="null">
 					<Height>-5.86</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-70</X><Y>70</Y></Direction>
-					<Id>1593291535517</Id>
+					<Direction><X>-60</X><Y>100</Y></Direction>
+					<Id>1593356245836</Id>
 					<Name><![CDATA[ViasDis - CVial]]></Name>
-					<X>450</X><Y>360</Y>
+					<X>450</X><Y>380</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -634,13 +889,13 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1593291535544" TargetId="1593291535536" Polarity="null">
+				<Link SourceId="1593356245880" TargetId="1593356245864" Polarity="null">
 					<Height>-17.064</Height>
 					<PolarityPosition>0.95</PolarityPosition>
 					<Direction><X>140</X><Y>170</Y></Direction>
-					<Id>1593291535519</Id>
+					<Id>1593356245838</Id>
 					<Name><![CDATA[Autos - CVial]]></Name>
-					<X>240</X><Y>260</Y>
+					<X>250</X><Y>310</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -649,13 +904,13 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1593292000822" TargetId="1593291535489" Polarity="null">
-					<Height>20.0</Height>
+				<Link SourceId="1593356245868" TargetId="1593356245804" Polarity="null">
+					<Height>3.411</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-116</X><Y>-9</Y></Direction>
-					<Id>1593292029448</Id>
+					<Direction><X>99</X><Y>49</Y></Direction>
+					<Id>1593356245840</Id>
 					<Name><![CDATA[VMVia - DetVias]]></Name>
-					<X>820</X><Y>380</Y>
+					<X>560</X><Y>370</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -664,13 +919,13 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1593292606371" TargetId="1593291535493" Polarity="null">
+				<Link SourceId="1593356245870" TargetId="1593356245810" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
 					<Direction><X>-120</X><Y>0</Y></Direction>
-					<Id>1593293100500</Id>
+					<Id>1593356245842</Id>
 					<Name><![CDATA[CAEnt - EntAutos]]></Name>
-					<X>360</X><Y>150</Y>
+					<X>370</X><Y>200</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -679,13 +934,13 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1593291535536" TargetId="1593292606371" Polarity="null">
+				<Link SourceId="1593356245864" TargetId="1593356245870" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
 					<Direction><X>-20</X><Y>-280</Y></Direction>
-					<Id>1593293937969</Id>
+					<Id>1593356245844</Id>
 					<Name><![CDATA[CVial - CAEnt]]></Name>
-					<X>380</X><Y>430</Y>
+					<X>390</X><Y>480</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -694,13 +949,13 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1593291535491" TargetId="1593296959377" Polarity="null">
+				<Link SourceId="1593356245808" TargetId="1593356245872" Polarity="null">
 					<Height>-6.166</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-109</X><Y>-29</Y></Direction>
-					<Id>1593296981631</Id>
+					<Direction><X>181</X><Y>-89</Y></Direction>
+					<Id>1593356245846</Id>
 					<Name><![CDATA[RepVias - RRepVias]]></Name>
-					<X>649</X><Y>369</Y>
+					<X>659</X><Y>419</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -709,13 +964,253 @@
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1593296959377" TargetId="1593293376420" Polarity="null">
-					<Height>20.0</Height>
+				<Link SourceId="1593356245872" TargetId="1593356245814" Polarity="null">
+					<Height>1.876</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>50</X><Y>-90</Y></Direction>
-					<Id>1593297002573</Id>
+					<Direction><X>-50</X><Y>-30</Y></Direction>
+					<Id>1593356245848</Id>
 					<Name><![CDATA[RRepVias - ViasRep]]></Name>
-					<X>540</X><Y>340</Y>
+					<X>840</X><Y>330</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593356245864" TargetId="1593356245868" Polarity="null">
+					<Height>-33.406</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>170</X><Y>-110</Y></Direction>
+					<Id>1593356245850</Id>
+					<Name><![CDATA[CVial - VMVia]]></Name>
+					<X>390</X><Y>480</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593357223479" TargetId="1593357154370" Polarity="null">
+					<Height>-21.26</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>80</X><Y>0</Y></Direction>
+					<Id>1593357484652</Id>
+					<Name><![CDATA[Impuestos - InvVias]]></Name>
+					<X>240</X><Y>610</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593357467478" TargetId="1593357154370" Polarity="null">
+					<Height>-6.875</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>50</X><Y>-70</Y></Direction>
+					<Id>1593357500852</Id>
+					<Name><![CDATA[TIVias - InvVias]]></Name>
+					<X>270</X><Y>680</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593357825679" TargetId="1593356245808" Polarity="null">
+					<Height>0.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-81</X><Y>-91</Y></Direction>
+					<Id>1593357894355</Id>
+					<Name><![CDATA[ViasARep - RepVias]]></Name>
+					<X>800</X><Y>510</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593357581574" TargetId="1593357825679" Polarity="null">
+					<Height>2.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-80</X><Y>0</Y></Direction>
+					<Id>1593357918200</Id>
+					<Name><![CDATA[VKRep - ViasARep]]></Name>
+					<X>880</X><Y>510</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593357825679" TargetId="1593357672550" Polarity="null">
+					<Height>-7.501</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>90</X><Y>60</Y></Direction>
+					<Id>1593357937592</Id>
+					<Name><![CDATA[ViasARep - ICVias]]></Name>
+					<X>800</X><Y>510</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593357581574" TargetId="1593357672550" Polarity="null">
+					<Height>0.0</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>10</X><Y>60</Y></Direction>
+					<Id>1593357950257</Id>
+					<Name><![CDATA[VKRep - ICVias]]></Name>
+					<X>880</X><Y>510</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593357672550" TargetId="1593357997565" Polarity="null">
+					<Height>-89.447</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-130</X><Y>-450</Y></Direction>
+					<Id>1593360028307</Id>
+					<Name><![CDATA[ICVias - ConsVias]]></Name>
+					<X>890</X><Y>570</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593360055486" TargetId="1593357997565" Polarity="null">
+					<Height>-4.086</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-50</X><Y>-100</Y></Direction>
+					<Id>1593360065663</Id>
+					<Name><![CDATA[VKCons - ConsVias]]></Name>
+					<X>810</X><Y>220</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593357997565" TargetId="1593360167148" Polarity="null">
+					<Height>-12.677</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-10</X><Y>80</Y></Direction>
+					<Id>1593360178753</Id>
+					<Name><![CDATA[ConsVias - RCons]]></Name>
+					<X>760</X><Y>120</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593360167148" TargetId="1593359967817" Polarity="null">
+					<Height>-5.917</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-70</X><Y>30</Y></Direction>
+					<Id>1593360187955</Id>
+					<Name><![CDATA[RCons - ViasCons]]></Name>
+					<X>750</X><Y>200</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593357154370" TargetId="1593360252782" Polarity="null">
+					<Height>-37.978</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>270</X><Y>10</Y></Direction>
+					<Id>1593360268024</Id>
+					<Name><![CDATA[InvVias - IVias]]></Name>
+					<X>320</X><Y>610</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593360252782" TargetId="1593357825679" Polarity="null">
+					<Height>-20.705</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>210</X><Y>-110</Y></Direction>
+					<Id>1593360289102</Id>
+					<Name><![CDATA[IVias - ViasARep]]></Name>
+					<X>590</X><Y>620</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593360252782" TargetId="1593357672550" Polarity="null">
+					<Height>-24.91</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>300</X><Y>-50</Y></Direction>
+					<Id>1593360299274</Id>
+					<Name><![CDATA[IVias - ICVias]]></Name>
+					<X>590</X><Y>620</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593360475474" TargetId="1593357258735" Polarity="null">
+					<Height>-38.782</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>50</X><Y>200</Y></Direction>
+					<Id>1593360487684</Id>
+					<Name><![CDATA[RRImp - RImp]]></Name>
+					<X>100</X><Y>410</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593360447833" TargetId="1593360475474" Polarity="null">
+					<Height>-19.057</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-20</X><Y>100</Y></Direction>
+					<Id>1593360511948</Id>
+					<Name><![CDATA[DAReca - RRImp]]></Name>
+					<X>120</X><Y>310</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -724,13 +1219,43 @@
 					<LineWidth>1</LineWidth>
 					<Delay>true</Delay>
 				</Link>
-				<Link SourceId="1593291535536" TargetId="1593292000822" Polarity="null">
-					<Height>-135.235</Height>
+				<Link SourceId="1593360463289" TargetId="1593360447833" Polarity="null">
+					<Height>-10.097</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>440</X><Y>-50</Y></Direction>
-					<Id>1593300788519</Id>
-					<Name><![CDATA[CVial - VMVia]]></Name>
-					<X>380</X><Y>430</Y>
+					<Direction><X>60</X><Y>100</Y></Direction>
+					<Id>1593360532183</Id>
+					<Name><![CDATA[TImp - DAReca]]></Name>
+					<X>60</X><Y>210</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593357345463" TargetId="1593360447833" Polarity="null">
+					<Height>-5.018</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-20</X><Y>140</Y></Direction>
+					<Id>1593360548796</Id>
+					<Name><![CDATA[VPAutos - DAReca]]></Name>
+					<X>140</X><Y>170</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1593356245880" TargetId="1593360447833" Polarity="null">
+					<Height>-15.013</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-130</X><Y>0</Y></Direction>
+					<Id>1593360583379</Id>
+					<Name><![CDATA[Autos - DAReca]]></Name>
+					<X>250</X><Y>310</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -742,9 +1267,9 @@
 			</Dependences>
 			<TableFunctions>
 				<TableFunction AccessType="public" StaticFunction="false">
-					<Id>1593297125912</Id>
+					<Id>1593356245772</Id>
 					<Name><![CDATA[ConsVia]]></Name>
-					<X>470</X><Y>30</Y>
+					<X>480</X><Y>80</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -815,9 +1340,9 @@
 					<Value><![CDATA[0.0]]></Value>
 				</TableFunction>
 				<TableFunction AccessType="public" StaticFunction="false">
-					<Id>1593301910902</Id>
+					<Id>1593356245793</Id>
 					<Name><![CDATA[MCVEAutos]]></Name>
-					<X>90</X><Y>510</Y>
+					<X>380</X><Y>330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -852,9 +1377,9 @@
 					<Value><![CDATA[0.4]]></Value>
 				</TableFunction>
 				<TableFunction AccessType="public" StaticFunction="false">
-					<Id>1593302047133</Id>
+					<Id>1593356245799</Id>
 					<Name><![CDATA[MCVMVia]]></Name>
-					<X>90</X><Y>550</Y>
+					<X>550</X><Y>460</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -891,7 +1416,7 @@
 			</TableFunctions>
 			<AgentLinks>
 				<AgentLink>
-					<Id>1593290728396</Id>
+					<Id>1593356221588</Id>
 					<Name><![CDATA[connections]]></Name>
 					<X>50</X><Y>-50</Y>
 					<Label><X>15</X><Y>0</Y></Label>
@@ -914,7 +1439,7 @@
 
 			<Presentation>
 				<Level>
-					<Id>1593290728400</Id>
+					<Id>1593356221592</Id>
 					<Name><![CDATA[level]]></Name>
 					<X>0</X><Y>0</Y>
 					<Label><X>10</X><Y>0</Y></Label>
@@ -927,9 +1452,9 @@
 
 			<Presentation>
     			<TimePlot>
-					<Id>1593302241574</Id>
+					<Id>1593365018795</Id>
 					<Name><![CDATA[plot]]></Name>
-					<X>940</X><Y>100</Y>
+					<X>1010</X><Y>70</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -937,7 +1462,148 @@
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<AutoUpdate>true</AutoUpdate>
 					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1593331200000</OccurrenceDate>
+					<OccurrenceDate>1593417600000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[MONTH]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[MONTH]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>260</Width>
+					<Height>210</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>180</Width>
+						<Height>120</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>true</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1000]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<DatasetExpression>  
+						<Title><![CDATA[Impuesto en caja]]></Title>
+					<Expression><![CDATA[my_dataset1]]></Expression>
+					<Color>-12004916</Color>
+					<Expression2><![CDATA[Impuestos]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+					</DatasetExpression>
+					<SamplesToKeep>400</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[400]]></TimeWindowExpression>
+					<FillAreaUnderLine>false</FillAreaUnderLine>
+					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
+    			</TimePlot>
+    			<TimePlot>
+					<Id>1593365023369</Id>
+					<Name><![CDATA[plot1]]></Name>
+					<X>1010</X><Y>300</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>true</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1593417600000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[MONTH]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[MONTH]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>260</Width>
+					<Height>210</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>180</Width>
+						<Height>120</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>true</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1500]]></VerScaleToExpression>
+					<VerScaleType>FIXED</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<DatasetExpression>  
+						<Title><![CDATA[Vias buenas]]></Title>
+					<Expression><![CDATA[my_dataset]]></Expression>
+					<Color>-2354116</Color>
+					<Expression2><![CDATA[ViasBuenas]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+					</DatasetExpression>
+					<DatasetExpression>  
+						<Title><![CDATA[Vias deterioradas]]></Title>
+					<Expression><![CDATA[my_dataset1]]></Expression>
+					<Color>-10496</Color>
+					<Expression2><![CDATA[ViasDet]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+					</DatasetExpression>
+					<SamplesToKeep>400</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[400]]></TimeWindowExpression>
+					<FillAreaUnderLine>false</FillAreaUnderLine>
+					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
+    			</TimePlot>
+    			<TimePlot>
+					<Id>1593365026375</Id>
+					<Name><![CDATA[plot2]]></Name>
+					<X>1010</X><Y>530</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>true</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1593417600000</OccurrenceDate>
 					<OccurrenceTime Class="CodeUnitValue">
 						<Code><![CDATA[0]]></Code>
 						<Unit Class="TimeUnits"><![CDATA[MONTH]]></Unit>
@@ -981,21 +1647,21 @@
 					<DatasetExpression>  
 						<Title><![CDATA[Autos]]></Title>
 					<Expression><![CDATA[my_dataset1]]></Expression>
-					<Color>-29696</Color>
+					<Color>-9404272</Color>
 					<Expression2><![CDATA[Autos]]></Expression2>
 					<Expression2Flag>true</Expression2Flag>
 						<PointStyle>NONE</PointStyle>
 						<LineWidth>1.0</LineWidth>
 					</DatasetExpression>
-					<SamplesToKeep>4500</SamplesToKeep>
-					<TimeWindowExpression><![CDATA[250]]></TimeWindowExpression>
+					<SamplesToKeep>400</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[400]]></TimeWindowExpression>
 					<FillAreaUnderLine>false</FillAreaUnderLine>
 					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
     			</TimePlot>
     			<TimePlot>
-					<Id>1593304592036</Id>
-					<Name><![CDATA[plot1]]></Name>
-					<X>940</X><Y>320</Y>
+					<Id>1593365029381</Id>
+					<Name><![CDATA[plot3]]></Name>
+					<X>730</X><Y>670</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1003,7 +1669,7 @@
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<AutoUpdate>true</AutoUpdate>
 					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1593331200000</OccurrenceDate>
+					<OccurrenceDate>1593417600000</OccurrenceDate>
 					<OccurrenceTime Class="CodeUnitValue">
 						<Code><![CDATA[0]]></Code>
 						<Unit Class="TimeUnits"><![CDATA[MONTH]]></Unit>
@@ -1040,87 +1706,21 @@
 					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
 					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
 					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
-					<VerScaleToExpression><![CDATA[1000]]></VerScaleToExpression>
+					<VerScaleToExpression><![CDATA[600]]></VerScaleToExpression>
 					<VerScaleType>FIXED</VerScaleType>
-					<DrawLine>true</DrawLine>
-					<Interpolation>LINEAR</Interpolation>
-					<DatasetExpression>  
-						<Title><![CDATA[Vias disponibles]]></Title>
-					<Expression><![CDATA[my_dataset1]]></Expression>
-					<Color>-8097537</Color>
-					<Expression2><![CDATA[ViasDis]]></Expression2>
-					<Expression2Flag>true</Expression2Flag>
-						<PointStyle>NONE</PointStyle>
-						<LineWidth>1.0</LineWidth>
-					</DatasetExpression>
-					<SamplesToKeep>1000</SamplesToKeep>
-					<TimeWindowExpression><![CDATA[250]]></TimeWindowExpression>
-					<FillAreaUnderLine>false</FillAreaUnderLine>
-					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
-    			</TimePlot>
-    			<TimePlot>
-					<Id>1593304595673</Id>
-					<Name><![CDATA[plot2]]></Name>
-					<X>940</X><Y>560</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<AutoUpdate>true</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1593331200000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[MONTH]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[MONTH]]></Unit>
-					</RecurrenceCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>260</Width>
-					<Height>210</Height>
-					<BackgroundColor/>
-					<BorderColor/>
-					<ChartArea>
-						<XOffset>50</XOffset>
-						<YOffset>30</YOffset>
-						<Width>180</Width>
-						<Height>120</Height>
-						<BackgroundColor>-1</BackgroundColor>
-						<BorderColor>-16777216</BorderColor>
-						<GridColor>-12566464</GridColor>
-					</ChartArea>
-					<Legend>
-						<Place>SOUTH</Place>
-						<TextColor>-16777216</TextColor>
-						<Size>30</Size>
-					</Legend>
-					<Labels>
-						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
-						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
-						<TextColor>-12566464</TextColor>
-					</Labels>
-					<ShowLegend>true</ShowLegend>
-					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
-					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
-					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
-					<VerScaleToExpression><![CDATA[6]]></VerScaleToExpression>
-					<VerScaleType>AUTO</VerScaleType>
 					<DrawLine>true</DrawLine>
 					<Interpolation>LINEAR</Interpolation>
 					<DatasetExpression>  
 						<Title><![CDATA[Congestion vial]]></Title>
 					<Expression><![CDATA[my_dataset1]]></Expression>
-					<Color>-23296</Color>
+					<Color>-2987746</Color>
 					<Expression2><![CDATA[CVial]]></Expression2>
 					<Expression2Flag>true</Expression2Flag>
 						<PointStyle>NONE</PointStyle>
 						<LineWidth>1.0</LineWidth>
 					</DatasetExpression>
-					<SamplesToKeep>250</SamplesToKeep>
-					<TimeWindowExpression><![CDATA[250]]></TimeWindowExpression>
+					<SamplesToKeep>400</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[400]]></TimeWindowExpression>
 					<FillAreaUnderLine>false</FillAreaUnderLine>
 					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
     			</TimePlot>
@@ -1139,8 +1739,8 @@
 	<RelativeAccuracy>1.0E-5</RelativeAccuracy>
 	<TimeAccuracy>1.0E-5</TimeAccuracy>
 	<Frame>
-		<Width>1270</Width>
-		<Height>830</Height>
+		<Width>1320</Width>
+		<Height>940</Height>
 	</Frame>
 	<Database>
 		<Logging>false</Logging>
@@ -1152,15 +1752,15 @@
 		</ExportSettings>
 	</Database>
 	
-	<RunConfiguration ActiveObjectClassId="1593290728401">
-		<Id>1593290728404</Id>
+	<RunConfiguration ActiveObjectClassId="1593356221593">
+		<Id>1593356221596</Id>
 		<Name><![CDATA[RunConfiguration]]></Name>
 		<MaximumMemory>512</MaximumMemory>
 		<ModelTimeProperties>
 			<StopOption><![CDATA[Stop at specified time]]></StopOption>
-			<InitialDate><![CDATA[1593216000000]]></InitialDate>	
+			<InitialDate><![CDATA[1593302400000]]></InitialDate>	
 			<InitialTime><![CDATA[0.0]]></InitialTime>	
-			<FinalDate><![CDATA[1595808000000]]></FinalDate>	
+			<FinalDate><![CDATA[1595894400000]]></FinalDate>	
 			<FinalTime><![CDATA[100.0]]></FinalTime>	
 		</ModelTimeProperties>
 		<AnimationProperties>
@@ -1178,8 +1778,8 @@
 	</RunConfiguration>
 	<Experiments>	
 		<!--   =========   Simulation Experiment   ========  -->
-		<SimulationExperiment ActiveObjectClassId="1593290728401">
-			<Id>1593290728403</Id>
+		<SimulationExperiment ActiveObjectClassId="1593356221593">
+			<Id>1593356221595</Id>
 			<Name><![CDATA[Simulation]]></Name>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
@@ -1205,7 +1805,7 @@
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-12490271</Color>
-					<Text><![CDATA[Tercer prototipo]]></Text>
+					<Text><![CDATA[Cuarto prototipo]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>24</Size>
@@ -1228,20 +1828,35 @@
 				<Parameter>
 					<ParameterName><![CDATA[PVidaAutos]]></ParameterName>
 				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[VPAutos]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[TIVias]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[VKRep]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[VKCons]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[TImp]]></ParameterName>
+				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
 				<EnableZoomAndPanning>true</EnableZoomAndPanning>
 				<ExecutionMode><![CDATA[realTimeScaled]]></ExecutionMode>
-				<Title><![CDATA[Tercer prototipo : Simulation]]></Title>	
+				<Title><![CDATA[Cuarto prototipo : Simulation]]></Title>	
 				<EnableDeveloperPanel>true</EnableDeveloperPanel>
 				<ShowDeveloperPanelOnStart>false</ShowDeveloperPanelOnStart>
 				<RealTimeScale>1.0</RealTimeScale>
 			</PresentationProperties>
 			<ModelTimeProperties>
 				<StopOption><![CDATA[Stop at specified time]]></StopOption>
-				<InitialDate><![CDATA[1593216000000]]></InitialDate>	
+				<InitialDate><![CDATA[1593302400000]]></InitialDate>	
 				<InitialTime><![CDATA[0.0]]></InitialTime>	
-				<FinalDate><![CDATA[2241216000000]]></FinalDate>	
+				<FinalDate><![CDATA[2241302400000]]></FinalDate>	
 				<FinalTime><![CDATA[250.0]]></FinalTime>	
 			</ModelTimeProperties>
 		</SimulationExperiment>	
